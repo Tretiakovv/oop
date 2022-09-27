@@ -3,20 +3,20 @@ package ru.nsu.fit.tretyakov;
 import java.util.Arrays;
 
 /**
- * </b>Stack<Type></b> — класс-реализация стека, который работает с любымми объектами.
- * @param <Type> — Тип объекта.
+ * </b>Stack</b> — class, which works with any type of object.
+ * @param <Type> — Type of object.
  */
 public class Stack<Type>{
-    /** <b>cap</b> — ёмкость стэка */
+    /** <b>cap</b> — capacity of stack */
     private int cap;
-    /** <b>len</b> — текущий размер стэка */
+    /** <b>len</b> — current length of stack */
     private int len = 0;
-    /** <b>stack</b> — массив объектов Type стэка */
+    /** <b>stack</b> — array of objects Type of stack */
     private Type[] stack;
 
     /**
-     * <b>Stack</b> — конструктор класса <b>Stack.</b>
-     * @param cap — входной параметр длины стэка. Создает массив <i>stack</i> размера <i>cap</i>.
+     * <b>Stack</b> — constructor of class <b>Stack.</b>
+     * @param cap — input parameter of capacity of stack. Creates the array <i>stack</i> with <i>cap</i> size.
      * @see Stack#cap
      */
     public Stack(int cap) {
@@ -26,8 +26,8 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>resize</b> — функция увеличивает размер массива <i>stack</i>,
-     * если текущий размер <i>len </i>совпадает с ёмкостью <i>cap</i>.
+     * <b>resize</b> — this function increases the of the <i>stack</i>,
+     * if the current length <i>len</i> of stack equals to its capacity <i>cap</i>.
      */
     private void resize() {
         if (len == cap) {
@@ -37,8 +37,8 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>push</b> — функция добавления объекта <i>elem</i> в массив <i>stack.</i>
-     * @param elem — элемент, добавляемый в массив.
+     * <b>push</b> — this function pushes object <i>elem</i> into array <i>stack.</i>
+     * @param elem — element, which will be added to stack.
      */
     public void push(Type elem) {
         resize();
@@ -46,8 +46,8 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>pop</b> — функция удаления последнего объекта из массива <i>stack</i>
-     * @return — возвращает последний элемент массива, если текущий размер массива <i>len</i> > 0. В противном случае возвращает <b>null.</b>
+     * <b>pop</b> — this function deletes the last element of the array <i>stack</i>
+     * @return — return the last element of the array, if current length <i>len</i> of the array > 0. Otherwise returns <b>null.</b>
      */
     public Type pop(){
         if (len > 0) return stack[--len];
@@ -55,8 +55,8 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>pushStack</b> — функция вставки массива объектов <i>arr</i> в стэк <i>stack.</i>
-     * @param arr — входной массив объектов.
+     * <b>pushStack</b> — this function pushes the array <i>arr</i> of objects into the stack.
+     * @param arr — input array of objects.
      */
     public void pushStack(Type[] arr) {
         for (Type type : arr) {
@@ -65,9 +65,9 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>popStack</b> — функция удаления нескольких элементов стэка <i>stack</i>.
-     * @param count — количество элементов, которое нужно удалить.
-     * @return — функция возвращает массив удаленных элементов стэка.
+     * <b>popStack</b> — this function deletes some elements from the array <i>stack</i>.
+     * @param count — number of elements, which should be deleted.
+     * @return — this functions returns the array of deleted elements from stack.
      */
     public Type[] popStack(int count) {
 
@@ -81,8 +81,8 @@ public class Stack<Type>{
     }
 
     /**
-     * <b>count</b> — функция позволяет узнать текущий размер стэка <i>stack</i>.
-     * @return — возвращает текущий размер стэка.
+     * <b>count</b> — this function shows current length of the <i>stack</i>.
+     * @return — returns current length of the stack.
      * @see Stack#len
      */
     public int count() {

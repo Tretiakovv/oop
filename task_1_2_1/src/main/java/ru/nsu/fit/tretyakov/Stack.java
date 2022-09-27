@@ -3,7 +3,7 @@ package ru.nsu.fit.tretyakov;
 import java.util.Arrays;
 
 /**
- * </b>Stack</b> — class, which works with any type of object.
+ * <b>Stack</b> — class, which works with any type of object.
  * @param <Type> — Type of object.
  */
 public class Stack<Type>{

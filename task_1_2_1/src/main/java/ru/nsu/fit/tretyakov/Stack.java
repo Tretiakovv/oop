@@ -47,7 +47,7 @@ public class Stack<Type>{
 
     /**
      * <b>pop</b> — this function deletes the last element of the array <i>stack</i>
-     * @return — return the last element of the array, if current length <i>len</i> of the array > 0. Otherwise returns <b>null.</b>
+     * @return — return the last element of the array, if current length <i>len</i> of the array which is bigger than 0. Otherwise returns <b>null.</b>
      */
     public Type pop(){
         if (len > 0) return stack[--len];

@@ -8,11 +8,10 @@ import ru.nsu.fit.tretyakov.Stack;
 
 public class StackTest {
 
-    // изменить на assertThrows
     @Test
     void testEmptyStack(){
         Stack<Integer> emptyStack= new Stack<Integer>(0);
-        assertNull(emptyStack.pop());
+        assertThrows(ArrayIndexOutOfBoundsException.class, emptyStack::pop);
     }
 
     @Test
@@ -58,7 +57,7 @@ public class StackTest {
         stackInteger.push(1);
         stackInteger.push(2);
         stackInteger.push(3);
-        stackInteger.popStack(100);
+        stackInteger.popStack(2);
         stackInteger.pop();
         stackInteger.pushStack(new Integer[]{1,2,3});
 

@@ -48,10 +48,19 @@ public class Stack<Type>{
     /**
      * <b>pop</b> — this function deletes the last element of the array <i>stack</i>
      * @return — return the last element of the array, if current length <i>len</i> of the array which is bigger than 0. Otherwise returns <b>null.</b>
+     * @throws ArrayIndexOutOfBoundsException
      */
-    public Type pop(){
-        if (len > 0) return stack[--len];
-        return null;
+    public Type pop() throws ArrayIndexOutOfBoundsException{
+
+        Type res;
+
+        try{
+            res = stack[--len];
+        } catch(ArrayIndexOutOfBoundsException e){
+            throw new ArrayIndexOutOfBoundsException("Stack is empty.");
+        }
+
+        return res;
     }
 
     /**
@@ -68,8 +77,9 @@ public class Stack<Type>{
      * <b>popStack</b> — this function deletes some elements from the array <i>stack</i>.
      * @param count — number of elements, which should be deleted.
      * @return — this functions returns the array of deleted elements from stack.
+     * @throws ArrayIndexOutOfBoundsException
      */
-    public Type[] popStack(int count) {
+    public Type[] popStack(int count) throws ArrayIndexOutOfBoundsException{
 
         Type[] buf = (Type[]) (new Object[count]);
 

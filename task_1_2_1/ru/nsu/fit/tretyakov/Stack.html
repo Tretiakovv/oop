@@ -286,11 +286,14 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>pop</h4>
-<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">Type</a>&nbsp;pop()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">Type</a>&nbsp;pop()
+         throws java.lang.ArrayIndexOutOfBoundsException</pre>
 <div class="block"><b>pop</b> — this function deletes the last element of the array <i>stack</i></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>— return the last element of the array, if current length <i>len</i> of the array which is bigger than 0. Otherwise returns <b>null.</b></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code></dd>
 </dl>
 </li>
 </ul>
@@ -316,13 +319,16 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>popStack</h4>
-<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">Type</a>[]&nbsp;popStack&#8203;(int&nbsp;count)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Stack.html" title="type parameter in Stack">Type</a>[]&nbsp;popStack&#8203;(int&nbsp;count)
+                throws java.lang.ArrayIndexOutOfBoundsException</pre>
 <div class="block"><b>popStack</b> — this function deletes some elements from the array <i>stack</i>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>count</code> - — number of elements, which should be deleted.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>— this functions returns the array of deleted elements from stack.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.ArrayIndexOutOfBoundsException</code></dd>
 </dl>
 </li>
 </ul>

@@ -109,7 +109,9 @@ public class TreeTest {
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> integerList = tstStream.toList();
-        List<Integer> tstList = Stream.of(2, 3, 1).toList();
+
+        Stream<Integer> integerStream = Stream.of(2, 3, 1);
+        List<Integer> tstList = integerStream.toList();
 
         simpleTree.addAll(integerList);
         assertTrue(simpleTree.containsAll(tstList));
@@ -119,8 +121,11 @@ public class TreeTest {
     public void notContainsAllTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = Stream.of(2, 3, 4, 5).toList();
-        List<Integer> tstList = Stream.of(5, 6).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.toList();
+
+        Stream<Integer> integerStream = Stream.of(5, 6);
+        List<Integer> tstList = integerStream.toList();
 
         simpleTree.addAll(integerList);
         assertFalse(simpleTree.containsAll(tstList));
@@ -133,9 +138,14 @@ public class TreeTest {
     public void retainAllSimpleTest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = Stream.of(2, 3, 4, 5, 6).toList();
-        List<Integer> retainList = Stream.of(1, 2, 3).toList();
-        Object[] tstArray = Stream.of(1,2,3).toArray();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
+        List<Integer> integerList = tstStream.toList();
+
+        Stream<Integer> retainStream = Stream.of(1, 2, 3);
+        List<Integer> retainList = retainStream.toList();
+
+        Stream<Integer> stream = Stream.of(1,2,3);
+        Object[] tstArray = stream.toArray();
 
         integerTree.addAll(integerList);
         integerTree.retainAll(retainList);
@@ -147,8 +157,11 @@ public class TreeTest {
     public void retainAllNullTest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = Stream.of(2, 3, 4, 5, 6).toList();
-        List<Integer> tstList = Stream.of(2, null).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
+        List<Integer> integerList = tstStream.toList();
+
+        Stream<Integer> integerStream = Stream.of(2, null);
+        List<Integer> tstList = integerStream.toList();
 
         integerTree.addAll(integerList);
         assertThrows(NullPointerException.class, () -> {
@@ -175,7 +188,8 @@ public class TreeTest {
     public void iteratorIterateCMETest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
 
-        List<Integer> tstList = Stream.of(2, 3, 4, 5).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> tstList = tstStream.toList();
 
         integerTree.addAll(tstList);
 
@@ -210,7 +224,8 @@ public class TreeTest {
     public void clearTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = Stream.of(2, 3, 4, 5).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.toList();
 
         simpleTree.addAll(integerList);
         simpleTree.clear();
@@ -223,7 +238,8 @@ public class TreeTest {
     public void toArray() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = Stream.of(2, 3, 4, 5).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.toList();
 
         simpleTree.addAll(integerList);
         Object[] finalArray = simpleTree.toArray();
@@ -236,7 +252,8 @@ public class TreeTest {
         Integer[] oldArray = {1, 2, 3};
         Tree<Integer> simpleTree = new Tree<>(1, 4);
 
-        List<Integer> integerList = Stream.of(5, 6).toList();
+        Stream<Integer> tstStream = Stream.of(5, 6);
+        List<Integer> integerList = tstStream.toList();
 
         simpleTree.addAll(integerList);
         Object[] finalArray = simpleTree.toArray(oldArray);

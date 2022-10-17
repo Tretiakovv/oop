@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tretyakov.Tree;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -108,10 +109,10 @@ public class TreeTest {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
-        List<Integer> integerList = tstStream.toList();
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
 
         Stream<Integer> integerStream = Stream.of(2, 3, 1);
-        List<Integer> tstList = integerStream.toList();
+        List<Integer> tstList = integerStream.collect(Collectors.toCollection(ArrayList::new));
 
         simpleTree.addAll(integerList);
         assertTrue(simpleTree.containsAll(tstList));

@@ -107,7 +107,8 @@ public class TreeTest {
     public void containsAllTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
 
-        List<Integer> integerList = (Stream.of(2, 3, 4, 5)).toList();
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.toList();
         List<Integer> tstList = Stream.of(2, 3, 1).toList();
 
         simpleTree.addAll(integerList);

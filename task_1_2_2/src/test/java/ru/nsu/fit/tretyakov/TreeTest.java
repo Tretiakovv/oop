@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.fit.tretyakov.Tree;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -106,15 +107,29 @@ public class TreeTest {
     @Test
     public void containsAllTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
-        simpleTree.addAll(Stream.of(2, 3, 4, 5).toList());
-        assertTrue(simpleTree.containsAll(Stream.of(2, 3, 1).toList()));
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        Stream<Integer> integerStream = Stream.of(2, 3, 1);
+        List<Integer> tstList = integerStream.collect(Collectors.toCollection(ArrayList::new));
+
+        simpleTree.addAll(integerList);
+        assertTrue(simpleTree.containsAll(tstList));
     }
 
     @Test
     public void notContainsAllTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
-        simpleTree.addAll(Stream.of(2, 3, 4, 5).toList());
-        assertFalse(simpleTree.containsAll(Stream.of(5, 6).toList()));
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        Stream<Integer> integerStream = Stream.of(5, 6);
+        List<Integer> tstList = integerStream.collect(Collectors.toCollection(ArrayList::new));
+
+        simpleTree.addAll(integerList);
+        assertFalse(simpleTree.containsAll(tstList));
     }
 
 
@@ -123,17 +138,35 @@ public class TreeTest {
     @Test
     public void retainAllSimpleTest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
-        integerTree.addAll(Stream.of(2, 3, 4, 5, 6).toList());
-        integerTree.retainAll(Stream.of(1, 2, 3).toList());
-        assertArrayEquals(integerTree.toArray(), Stream.of(1, 2, 3).toArray());
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        Stream<Integer> retainStream = Stream.of(1, 2, 3);
+        List<Integer> retainList = retainStream.collect(Collectors.toCollection(ArrayList::new));
+
+        Stream<Integer> stream = Stream.of(1,2,3);
+        Object[] tstArray = stream.toArray();
+
+        integerTree.addAll(integerList);
+        integerTree.retainAll(retainList);
+
+        assertArrayEquals(integerTree.toArray(), tstArray);
     }
 
     @Test
     public void retainAllNullTest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
-        integerTree.addAll(Stream.of(2, 3, 4, 5, 6).toList());
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        Stream<Integer> integerStream = Stream.of(2, null);
+        List<Integer> tstList = integerStream.collect(Collectors.toCollection(ArrayList::new));
+
+        integerTree.addAll(integerList);
         assertThrows(NullPointerException.class, () -> {
-            integerTree.retainAll(Stream.of(2, null).toList());
+            integerTree.retainAll(tstList);
         });
     }
 
@@ -155,7 +188,11 @@ public class TreeTest {
     @Test
     public void iteratorIterateCMETest() {
         Tree<Integer> integerTree = new Tree<>(1, 1);
-        integerTree.addAll(Stream.of(2, 3, 4, 5).toList());
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> tstList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        integerTree.addAll(tstList);
 
         Iterator<Integer> itr = integerTree.iterator();
         while (itr.hasNext()) {
@@ -187,7 +224,11 @@ public class TreeTest {
     @Test
     public void clearTest() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
-        simpleTree.addAll(Stream.of(2, 3, 4, 5).toList());
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        simpleTree.addAll(integerList);
         simpleTree.clear();
         assertTrue(simpleTree.isEmpty());
     }
@@ -197,7 +238,11 @@ public class TreeTest {
     @Test
     public void toArray() {
         Tree<Integer> simpleTree = new Tree<>(1, 1);
-        simpleTree.addAll(Stream.of(2, 3, 4, 5).toList());
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        simpleTree.addAll(integerList);
         Object[] finalArray = simpleTree.toArray();
         System.out.println(Arrays.toString(finalArray));
         assertArrayEquals(finalArray, new Object[]{1, 2, 3, 4, 5});
@@ -208,7 +253,10 @@ public class TreeTest {
         Integer[] oldArray = {1, 2, 3};
         Tree<Integer> simpleTree = new Tree<>(1, 4);
 
-        simpleTree.addAll(Stream.of(5, 6).toList());
+        Stream<Integer> tstStream = Stream.of(5, 6);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        simpleTree.addAll(integerList);
         Object[] finalArray = simpleTree.toArray(oldArray);
 
         assertArrayEquals(finalArray, new Object[]{1, 2, 3, 4, 5, 6});

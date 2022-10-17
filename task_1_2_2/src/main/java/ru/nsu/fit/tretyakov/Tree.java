@@ -5,7 +5,7 @@ import java.util.*;
 import static java.lang.Math.max;
 
 /**
- * Tree is the class of interface Collection.
+ * Binary Tree is the class of interface Collection.
  * In it user can create tree-structure using node-classes
  * and iterate over the tree using BFS.
  * @see Tree.Node

@@ -1,1 +1,0 @@
-javac -d files/class_files -sourcepath ./src/main/java src/main/java/ru/nsu/fit/tretyakov/Main.java

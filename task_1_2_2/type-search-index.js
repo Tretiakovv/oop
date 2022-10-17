@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.tretyakov","l":"Tree"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.tretyakov","l":"Tree"},{"p":"ru.nsu.fit.tretyakov","l":"Tree.TreeIterator"}]

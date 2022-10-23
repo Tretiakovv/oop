@@ -20,7 +20,6 @@ public class Tree<T> implements Collection<T> {
     /**
      * Parametrized constructor of the Tree. Used to create root Node.
      *
-     * @param size — initial size of the Tree.
      * @param data — value of the root Node.
      */
     public Tree(T data) {

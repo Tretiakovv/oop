@@ -18,7 +18,7 @@ public class TreeTest {
 
     @Test
     public void getSizeTest() {
-        Tree<String> simpleTree = new Tree<>(1, "aaa");
+        Tree<String> simpleTree = new Tree<>("aaa");
         simpleTree.add("bbb");
         simpleTree.add("ccc");
         assertEquals(simpleTree.size(), 3);
@@ -34,7 +34,7 @@ public class TreeTest {
 
     @Test
     public void addSingleTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         Integer[] tstArray = {1, 2, 3};
         integerTree.add(2);
         integerTree.add(3);
@@ -43,7 +43,7 @@ public class TreeTest {
 
     @Test
     public void addAllTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         Integer[] tstArray = {1, 2, 3};
         integerTree.addAll(List.of(new Integer[]{2, 3}));
         assertArrayEquals(integerTree.toArray(), tstArray);
@@ -53,16 +53,16 @@ public class TreeTest {
 
     @Test
     public void removeRootSingleTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         integerTree.remove(1);
-        assertThrows(ConcurrentModificationException.class, () -> {
-            Tree.TreeIterator<Integer> itr = integerTree.iterator();
+        assertThrows(NullPointerException.class, () -> {
+            Tree.TreeIteratorBFS<Integer> itr = integerTree.iterator();
         });
     }
 
     @Test
     public void removeAllTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         integerTree.addAll(List.of(new Integer[]{2, 3, 4, 5}));
         integerTree.removeAll(List.of(new Integer[]{2, 3, 4, 5}));
         assertEquals(integerTree.toArray()[0], 1);
@@ -70,13 +70,13 @@ public class TreeTest {
 
     @Test
     public void removeElemNotInTreeTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         assertFalse(integerTree.remove(5));
     }
 
     @Test
     public void removeNullTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         assertThrows(NullPointerException.class, () -> {
             integerTree.remove(null);
         });
@@ -86,19 +86,19 @@ public class TreeTest {
 
     @Test
     public void containsTest() {
-        Tree<String> simpleTree = new Tree<>(1, "aaa");
+        Tree<String> simpleTree = new Tree<>("aaa");
         assertTrue(simpleTree.contains("aaa"));
     }
 
     @Test
     public void notContainsTest() {
-        Tree<String> simpleTree = new Tree<>(1, "aaa");
+        Tree<String> simpleTree = new Tree<>("aaa");
         assertFalse(simpleTree.contains("bbb"));
     }
 
     @Test
     public void containsNullTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         assertThrows(NullPointerException.class, () -> {
             integerTree.contains(null);
         });
@@ -106,7 +106,7 @@ public class TreeTest {
 
     @Test
     public void containsAllTest() {
-        Tree<Integer> simpleTree = new Tree<>(1, 1);
+        Tree<Integer> simpleTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -120,7 +120,7 @@ public class TreeTest {
 
     @Test
     public void notContainsAllTest() {
-        Tree<Integer> simpleTree = new Tree<>(1, 1);
+        Tree<Integer> simpleTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -137,7 +137,7 @@ public class TreeTest {
 
     @Test
     public void retainAllSimpleTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -145,7 +145,7 @@ public class TreeTest {
         Stream<Integer> retainStream = Stream.of(1, 2, 3);
         List<Integer> retainList = retainStream.collect(Collectors.toCollection(ArrayList::new));
 
-        Stream<Integer> stream = Stream.of(1,2,3);
+        Stream<Integer> stream = Stream.of(1, 2, 3);
         Object[] tstArray = stream.toArray();
 
         integerTree.addAll(integerList);
@@ -156,7 +156,7 @@ public class TreeTest {
 
     @Test
     public void retainAllNullTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5, 6);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -174,20 +174,20 @@ public class TreeTest {
 
     @Test
     public void iteratorHasNextTrueTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         assertTrue(integerTree.iterator().hasNext());
     }
 
     @Test
     public void iteratorRemoveRootTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
         integerTree.remove(1);
         assertTrue(integerTree.isEmpty());
     }
 
     @Test
     public void iteratorIterateCMETest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
+        Tree<Integer> integerTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> tstList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -204,16 +204,16 @@ public class TreeTest {
 
     @Test
     public void nextNodeEmptyQueueTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
-        Tree.TreeIterator<Integer> itr = integerTree.iterator();
+        Tree<Integer> integerTree = new Tree<>(1);
+        Tree.TreeIteratorBFS<Integer> itr = integerTree.iterator();
         itr.next();
         assertThrows(NullPointerException.class, itr::next);
     }
 
     @Test
     public void removeEmptyQueueTest() {
-        Tree<Integer> integerTree = new Tree<>(1, 1);
-        Tree.TreeIterator<Integer> itr = integerTree.iterator();
+        Tree<Integer> integerTree = new Tree<>(1);
+        Tree.TreeIteratorBFS<Integer> itr = integerTree.iterator();
         itr.next();
         assertThrows(NullPointerException.class, itr::remove);
     }
@@ -223,7 +223,7 @@ public class TreeTest {
 
     @Test
     public void clearTest() {
-        Tree<Integer> simpleTree = new Tree<>(1, 1);
+        Tree<Integer> simpleTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -237,7 +237,7 @@ public class TreeTest {
 
     @Test
     public void toArray() {
-        Tree<Integer> simpleTree = new Tree<>(1, 1);
+        Tree<Integer> simpleTree = new Tree<>(1);
 
         Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -251,7 +251,7 @@ public class TreeTest {
     @Test
     public void editOldArrayTest() {
         Integer[] oldArray = {1, 2, 3};
-        Tree<Integer> simpleTree = new Tree<>(1, 4);
+        Tree<Integer> simpleTree = new Tree<>(4);
 
         Stream<Integer> tstStream = Stream.of(5, 6);
         List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
@@ -260,5 +260,66 @@ public class TreeTest {
         Object[] finalArray = simpleTree.toArray(oldArray);
 
         assertArrayEquals(finalArray, new Object[]{1, 2, 3, 4, 5, 6});
+    }
+
+    // CME Test
+
+    @Test
+    public void concurrentModificationExceptionTest() {
+
+        Tree<Integer> myTree = new Tree<>(1);
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> integerList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+        myTree.addAll(integerList);
+
+        Tree.TreeIteratorBFS<Integer> itr = myTree.iterator();
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            for (var elem : myTree) {
+                myTree.add(elem);
+            }
+        });
+    }
+
+    // IteratorDFS test
+
+    @Test
+    public void iteratorDFSHasNextTrueTest() {
+        Tree<Integer> integerTree = new Tree<>(1);
+        assertTrue(integerTree.iteratorDFS().hasNext());
+    }
+
+    @Test
+    public void iteratorDFSIterateCMETest() {
+        Tree<Integer> integerTree = new Tree<>(1);
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> tstList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        integerTree.addAll(tstList);
+
+        Tree.TreeIteratorDFS<Integer> itr = integerTree.iteratorDFS();
+        while (itr.hasNext()) {
+            itr.next();
+        }
+
+        assertThrows(NullPointerException.class, itr::next);
+    }
+
+    @Test
+    public void nextNodeDFSEmptyQueueTest() {
+        Tree<Integer> integerTree = new Tree<>(1);
+        Tree.TreeIteratorDFS<Integer> itr = integerTree.iteratorDFS();
+        itr.next();
+        assertThrows(NullPointerException.class, itr::next);
+    }
+
+    @Test
+    public void removeDFSEmptyQueueTest() {
+        Tree<Integer> integerTree = new Tree<>(1);
+        Tree.TreeIteratorDFS<Integer> itr = integerTree.iteratorDFS();
+        itr.next();
+        assertThrows(NullPointerException.class, itr::remove);
     }
 }

@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -169,9 +169,16 @@ implements java.util.Collection&lt;T&gt;</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.TreeIterator.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIterator</a>&lt;<a href="Tree.TreeIterator.html" title="type parameter in Tree.TreeIterator">T</a>&gt;</span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.TreeIteratorBFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorBFS</a>&lt;<a href="Tree.TreeIteratorBFS.html" title="type parameter in Tree.TreeIteratorBFS">T</a>&gt;</span></code></th>
 <td class="colLast">
 <div class="block">This class is the iterator of the Tree.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Tree.TreeIteratorDFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorDFS</a>&lt;<a href="Tree.TreeIteratorDFS.html" title="type parameter in Tree.TreeIteratorDFS">T</a>&gt;</span></code></th>
+<td class="colLast">
+<div class="block">DFS-Iterator class which implements Iterator interface.</div>
 </td>
 </tr>
 </table>
@@ -198,8 +205,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.Integer,T)">Tree</a></span>&#8203;(java.lang.Integer&nbsp;size,
-    <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;data)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(T)">Tree</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;data)</code></th>
 <td class="colLast">
 <div class="block">Parametrized constructor of the Tree.</div>
 </td>
@@ -273,48 +279,55 @@ implements java.util.Collection&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="Tree.TreeIterator.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIterator</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<td class="colFirst"><code><a href="Tree.TreeIteratorBFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorBFS</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Function that creates iterator from the Tree.</div>
+<div class="block">Function that creates BFS iterator from the Tree.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="Tree.TreeIteratorDFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorDFS</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iteratorDFS()">iteratorDFS</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Function that creates DFS iterator from the Tree.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(java.lang.Object)">remove</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">
 <div class="block">Function of removing element from the Tree.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAll(java.util.Collection)">removeAll</a></span>&#8203;(java.util.Collection&lt;?&gt;&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Function of removing all elements of a collection.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#retainAll(java.util.Collection)">retainAll</a></span>&#8203;(java.util.Collection&lt;?&gt;&nbsp;c)</code></th>
 <td class="colLast">
 <div class="block">Function that removes all elements that are not contained in required collection.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#size()">size</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function of getting size of the Tree.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.lang.Object[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray()">toArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function that creates array from the Tree.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>&lt;T1&gt;&nbsp;T1[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toArray(T1%5B%5D)">toArray</a></span>&#8203;(T1[]&nbsp;a)</code></th>
 <td class="colLast">
@@ -359,20 +372,18 @@ implements java.util.Collection&lt;T&gt;</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.Integer,java.lang.Object)">
+<a id="&lt;init&gt;(java.lang.Object)">
 <!--   -->
-</a><a id="&lt;init&gt;(java.lang.Integer,T)">
+</a><a id="&lt;init&gt;(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>Tree</h4>
-<pre>public&nbsp;Tree&#8203;(java.lang.Integer&nbsp;size,
-            <a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;data)</pre>
+<pre>public&nbsp;Tree&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;data)</pre>
 <div class="block">Parametrized constructor of the Tree. Used to create root Node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>size</code> - — initial size of the Tree.</dd>
 <dd><code>data</code> - — value of the root Node.</dd>
 </dl>
 </li>
@@ -476,15 +487,29 @@ implements java.util.Collection&lt;T&gt;</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>iterator</h4>
-<pre class="methodSignature">public&nbsp;<a href="Tree.TreeIterator.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIterator</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iterator()</pre>
-<div class="block">Function that creates iterator from the Tree.</div>
+<pre class="methodSignature">public&nbsp;<a href="Tree.TreeIteratorBFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorBFS</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iterator()</pre>
+<div class="block">Function that creates BFS iterator from the Tree.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.lang.Iterable&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>iterator-class of the Tree.</dd>
+<dd>BFS iterator-class of the Tree.</dd>
+</dl>
+</li>
+</ul>
+<a id="iteratorDFS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>iteratorDFS</h4>
+<pre class="methodSignature">public&nbsp;<a href="Tree.TreeIteratorDFS.html" title="class in ru.nsu.fit.tretyakov">Tree.TreeIteratorDFS</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;iteratorDFS()</pre>
+<div class="block">Function that creates DFS iterator from the Tree.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>DFS iterator-class of the Tree.</dd>
 </dl>
 </li>
 </ul>
@@ -521,8 +546,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>T1</code> - is the generic-type of the required object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>a</code> - the array into which the elements of this collection are to be
-        stored, if it is big enough; otherwise, a new array of the same
-        runtime type is allocated for this purpose.</dd>
+             stored, if it is big enough; otherwise, a new array of the same
+             runtime type is allocated for this purpose.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>modified array, that contains elements of the old array and the tree-created array.</dd>
 </dl>
@@ -556,7 +581,8 @@ implements java.util.Collection&lt;T&gt;</pre>
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;remove&#8203;(java.lang.Object&nbsp;o)
                throws java.lang.NullPointerException</pre>
-<div class="block">Function of removing element from the Tree.</div>
+<div class="block">Function of removing element from the Tree.
+ Deleting a specific node entails deleting the entire subtree associated with it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>remove</code>&nbsp;in interface&nbsp;<code>java.util.Collection&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></dd>
@@ -564,7 +590,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>o</code> - element to be removed from this collection, if present</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if required object contains in the Tree.
-         Otherwise, return false.</dd>
+ Otherwise, return false.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.NullPointerException</code> - if required object is null.</dd>
 </dl>
@@ -585,7 +611,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>c</code> - collection to be checked for containment in this collection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if all elements of a required collection are contained in the Tree.
-         Otherwise, return false.</dd>
+ Otherwise, return false.</dd>
 </dl>
 </li>
 </ul>
@@ -622,7 +648,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>c</code> - collection containing elements to be removed from this collection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if function deleted all elements of a collection.
-         Otherwise, return false.</dd>
+ Otherwise, return false.</dd>
 </dl>
 </li>
 </ul>
@@ -642,7 +668,7 @@ implements java.util.Collection&lt;T&gt;</pre>
 <dd><code>c</code> - collection containing elements to be retained in this collection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true, if all elements has been retained.
-         Otherwise, return false.</dd>
+ Otherwise, return false.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.NullPointerException</code> - if collection c contains null-element.</dd>
 </dl>

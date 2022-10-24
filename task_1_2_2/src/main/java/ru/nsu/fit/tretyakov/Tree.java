@@ -46,22 +46,22 @@ public class Tree<T> implements Collection<T> {
      */
     public Node<T> addNode(Node<T> node, T data) {
 
-        if (node.leftSon == null || node.rightSon == null) {
+        if (node.leftChild == null || node.rightChild == null) {
 
             size++;
             var sonDepth = node.depth + 1;
 
-            if (node.leftSon == null) node.leftSon = new Node<T>(data, sonDepth, node);
-            else node.rightSon = new Node<T>(data, sonDepth, node);
+            if (node.leftChild == null) node.leftChild = new Node<T>(data, sonDepth, node);
+            else node.rightChild = new Node<T>(data, sonDepth, node);
 
             node.weight++;
             return node;
 
-        } else if (node.leftSon.weight <= node.rightSon.weight)
-            addNode(node.leftSon, data);
-        else addNode(node.rightSon, data);
+        } else if (node.leftChild.weight <= node.rightChild.weight)
+            addNode(node.leftChild, data);
+        else addNode(node.rightChild, data);
 
-        node.weight = max(node.leftSon.weight, node.rightSon.weight) + 1;
+        node.weight = max(node.leftChild.weight, node.rightChild.weight) + 1;
         return node;
     }
 
@@ -373,16 +373,19 @@ public class Tree<T> implements Collection<T> {
         @Override
         public void remove() throws NullPointerException {
 
+            currentModification++;
+            modCount++;
+
             if (!hasNext()) {
                 throw new NullPointerException("Queue is empty");
             }
 
             var curNode = nextNode();
 
-            if (curNode.father != null) {
-                if (curNode.father.leftSon == curNode) {
-                    curNode.father.leftSon = null;
-                } else curNode.father.rightSon = null;
+            if (curNode.parent != null) {
+                if (curNode.parent.leftChild == curNode) {
+                    curNode.parent.leftChild = null;
+                } else curNode.parent.rightChild = null;
             }
 
             curNode = null;
@@ -391,8 +394,8 @@ public class Tree<T> implements Collection<T> {
         private Node<T> nextNode() throws NullPointerException {
 
             if (hasNext()) {
-                Node<T> ls = queueOfNodes.element().leftSon;
-                Node<T> rs = queueOfNodes.element().rightSon;
+                Node<T> ls = queueOfNodes.element().leftChild;
+                Node<T> rs = queueOfNodes.element().rightChild;
 
                 if (ls != null) queueOfNodes.add(ls);
                 if (rs != null) queueOfNodes.add(rs);
@@ -454,14 +457,18 @@ public class Tree<T> implements Collection<T> {
          */
         @Override
         public void remove() throws NullPointerException {
+
+            currentModification++;
+            modCount++;
+
             if (!hasNext()) {
                 throw new NullPointerException("Deque is empty");
             } else {
                 var curNode = nextNode();
-                if (curNode.father != null) {
-                    if (curNode.father.leftSon == curNode) {
-                        curNode.father.leftSon = null;
-                    } else curNode.father.rightSon = null;
+                if (curNode.parent != null) {
+                    if (curNode.parent.leftChild == curNode) {
+                        curNode.parent.leftChild = null;
+                    } else curNode.parent.rightChild = null;
                 }
                 curNode = null;
             }
@@ -470,8 +477,8 @@ public class Tree<T> implements Collection<T> {
         private Node<T> nextNode() throws NullPointerException {
             if (hasNext()) {
                 Node<T> elem = dequeOfNodes.pollFirst();
-                Node<T> ls = elem.leftSon;
-                Node<T> rs = elem.rightSon;
+                Node<T> ls = elem.leftChild;
+                Node<T> rs = elem.rightChild;
 
                 if (ls != null) dequeOfNodes.addFirst(ls);
                 if (rs != null) dequeOfNodes.addLast(rs);
@@ -486,22 +493,22 @@ public class Tree<T> implements Collection<T> {
 
     private static class Node<T> {
         protected Integer weight, depth;
-        protected Node<T> leftSon, rightSon, father;
+        protected Node<T> leftChild, rightChild, parent;
         private T data;
 
         public Node(T data, Node<T> father) {
             this.data = data;
             depth = weight = 0;
-            leftSon = rightSon = null;
-            this.father = father;
+            leftChild = rightChild = null;
+            this.parent = father;
         }
 
         public Node(T data, Integer depth, Node<T> father) {
             this.data = data;
             this.depth = depth;
             weight = 0;
-            leftSon = rightSon = null;
-            this.father = father;
+            leftChild = rightChild = null;
+            this.parent = father;
         }
     }
 }

@@ -322,4 +322,46 @@ public class TreeTest {
         itr.next();
         assertThrows(NullPointerException.class, itr::remove);
     }
+
+    @Test
+    public void CMETwoIterators() {
+
+        Tree<Integer> integerTree = new Tree<>(1);
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> tstList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        integerTree.addAll(tstList);
+
+        Tree.TreeIteratorBFS<Integer> itrBFS = integerTree.iterator();
+        Tree.TreeIteratorDFS<Integer> itrDFS = integerTree.iteratorDFS();
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            while(itrBFS.hasNext()){
+                itrDFS.remove();
+                itrBFS.next();
+            }
+        });
+    }
+
+    @Test
+    public void CMETwoIteratorsDFS() {
+
+        Tree<Integer> integerTree = new Tree<>(1);
+
+        Stream<Integer> tstStream = Stream.of(2, 3, 4, 5);
+        List<Integer> tstList = tstStream.collect(Collectors.toCollection(ArrayList::new));
+
+        integerTree.addAll(tstList);
+
+        Tree.TreeIteratorBFS<Integer> itrBFS = integerTree.iterator();
+        Tree.TreeIteratorDFS<Integer> itrDFS = integerTree.iteratorDFS();
+
+        assertThrows(ConcurrentModificationException.class, () -> {
+            while(itrDFS.hasNext()){
+                itrBFS.remove();
+                itrDFS.next();
+            }
+        });
+    }
 }

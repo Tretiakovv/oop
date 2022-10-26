@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -128,9 +128,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - is the required type of the object that
+           will be stored in the Vertex as data.</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Vertex&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">This class is the vertex of the Graph. Contains data and allows user
+ to get data from the vertex, set data to the vertex and get / set distance
+ from the current vertex in the Dijkstra algorithm.</div>
 </li>
 </ul>
 </div>
@@ -152,7 +160,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(T)">Vertex</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;data)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor of the vertex.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -175,11 +185,25 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="Vertex.html" title="type parameter in Vertex">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getData()">getData</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Getter of the data in vertex.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>protected java.lang.Float</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDistance()">getDistance</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setData(T)">setData</a></span>&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;data)</code></th>
+<td class="colLast">
+<div class="block">Setter of the data in vertex.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDistance(java.lang.Float)">setDistance</a></span>&#8203;(java.lang.Float&nbsp;distance)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -215,6 +239,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Vertex</h4>
 <pre>public&nbsp;Vertex&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;data)</pre>
+<div class="block">Constructor of the vertex. Sets data to the vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - is the required data that will be stored in
+             the vertex.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -227,6 +257,24 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getDistance()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDistance</h4>
+<pre class="methodSignature">protected&nbsp;java.lang.Float&nbsp;getDistance()</pre>
+</li>
+</ul>
+<a id="setDistance(java.lang.Float)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDistance</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;setDistance&#8203;(java.lang.Float&nbsp;distance)</pre>
+</li>
+</ul>
 <a id="getData()">
 <!--   -->
 </a>
@@ -234,6 +282,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getData</h4>
 <pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;getData()</pre>
+<div class="block">Getter of the data in vertex.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>data</dd>
+</dl>
 </li>
 </ul>
 <a id="setData(java.lang.Object)">
@@ -245,6 +298,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setData</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setData&#8203;(<a href="Vertex.html" title="type parameter in Vertex">T</a>&nbsp;data)</pre>
+<div class="block">Setter of the data in vertex.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - is the data that will be set in
+             the vertex.</dd>
+</dl>
 </li>
 </ul>
 </li>

@@ -128,9 +128,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - is the required type of the object that
+            will be stored in the Vertex as data.</dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Edge&lt;T&gt;</span>
 extends java.lang.Object</pre>
+<div class="block">This class is the edge of the Graph. Allows user to set and get
+ ingoing and outgoing vertices and weight.</div>
 </li>
 </ul>
 </div>
@@ -153,13 +160,17 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.fit.tretyakov.Vertex,ru.nsu.fit.tretyakov.Vertex)">Edge</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex,
     <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Another constructor of the edge that won't require weight.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(ru.nsu.fit.tretyakov.Vertex,ru.nsu.fit.tretyakov.Vertex,java.lang.Integer)">Edge</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex,
     <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex,
     java.lang.Integer&nbsp;weight)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor of the edge.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -182,32 +193,44 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIngoingVertex()">getIngoingVertex</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Getter of the ingoing vertex of the edge.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOutgoingVertex()">getOutgoingVertex</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Getter of the outgoing vertex of the edge.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWeight()">getWeight</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Getter of the weight of the edge.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIngoingVertex(ru.nsu.fit.tretyakov.Vertex)">setIngoingVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Setter of the ingoing vertex of the edge.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOutgoingVertex(ru.nsu.fit.tretyakov.Vertex)">setOutgoingVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Setter of the outgoing vertex of the edge.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWeight(java.lang.Integer)">setWeight</a></span>&#8203;(java.lang.Integer&nbsp;weight)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Setter of the weight of the edge.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -242,6 +265,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;Edge&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex,
             <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex,
             java.lang.Integer&nbsp;weight)</pre>
+<div class="block">Constructor of the edge. Sets vertices and weight of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ingoingVertex</code> - is the ingoing vertex of the edge.</dd>
+<dd><code>outgoingVertex</code> - is the outgoing vertex of the edge.</dd>
+<dd><code>weight</code> - is the required weight of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(ru.nsu.fit.tretyakov.Vertex,ru.nsu.fit.tretyakov.Vertex)">
@@ -252,6 +282,12 @@ extends java.lang.Object</pre>
 <h4>Edge</h4>
 <pre>public&nbsp;Edge&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex,
             <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex)</pre>
+<div class="block">Another constructor of the edge that won't require weight.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ingoingVertex</code> - is the ingoing vertex of the edge.</dd>
+<dd><code>outgoingVertex</code> - is the outgoing vertex of the edge.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -271,6 +307,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getWeight</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Integer&nbsp;getWeight()</pre>
+<div class="block">Getter of the weight of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>weight of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="setWeight(java.lang.Integer)">
@@ -280,6 +321,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setWeight</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setWeight&#8203;(java.lang.Integer&nbsp;weight)</pre>
+<div class="block">Setter of the weight of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>weight</code> - is the required weight of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="getIngoingVertex()">
@@ -289,6 +335,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getIngoingVertex</h4>
 <pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getIngoingVertex()</pre>
+<div class="block">Getter of the ingoing vertex of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>ingoing vertex of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="setIngoingVertex(ru.nsu.fit.tretyakov.Vertex)">
@@ -298,6 +349,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setIngoingVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setIngoingVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;ingoingVertex)</pre>
+<div class="block">Setter of the ingoing vertex of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ingoingVertex</code> - is the required ingoing vertex of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="getOutgoingVertex()">
@@ -307,6 +363,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getOutgoingVertex</h4>
 <pre class="methodSignature">public&nbsp;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;getOutgoingVertex()</pre>
+<div class="block">Getter of the outgoing vertex of the edge.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>outgoing vertex of the edge.</dd>
+</dl>
 </li>
 </ul>
 <a id="setOutgoingVertex(ru.nsu.fit.tretyakov.Vertex)">
@@ -316,6 +377,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setOutgoingVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setOutgoingVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Edge.html" title="type parameter in Edge">T</a>&gt;&nbsp;outgoingVertex)</pre>
+<div class="block">Setter of the outgoing vertex of the edge.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>outgoingVertex</code> - is the required outgoing
+                       vertex of the edge.</dd>
+</dl>
 </li>
 </ul>
 </li>

@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -121,11 +121,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - is the type of object that will be stored in the Graph.</dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="GraphAdjacencyMatrix.html" title="class in ru.nsu.fit.tretyakov">GraphAdjacencyMatrix</a></code></dd>
+<dd><code><a href="GraphAdjacencyList.html" title="class in ru.nsu.fit.tretyakov">GraphAdjacencyList</a></code>, <code><a href="GraphAdjacencyMatrix.html" title="class in ru.nsu.fit.tretyakov">GraphAdjacencyMatrix</a></code>, <code><a href="GraphIncidentMatrix.html" title="class in ru.nsu.fit.tretyakov">GraphIncidentMatrix</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">Graph&lt;T&gt;</span></pre>
+<div class="block">Graph interface allows user to implement simple methods of adding,
+ deleting edges, creating array of vertices or edges from the Graph
+ and checking Graph state: how many vertices or edges in the Graph,
+ is the Graph empty or not.</div>
 </li>
 </ul>
 </div>
@@ -148,24 +156,102 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.tretyakov.Vertex,ru.nsu.fit.tretyakov.Vertex)">addEdge</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;inVertex,
-       <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;outVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.fit.tretyakov.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">
+<div class="block">This method adds the required edge to the Graph.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.fit.tretyakov.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;newVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdges(java.util.Collection)">addEdges</a></span>&#8203;(java.util.Collection&lt;<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</code></th>
+<td class="colLast">
+<div class="block">This method adds the required collection of edges to the Graph.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteEdge(ru.nsu.fit.tretyakov.Edge)">deleteEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.fit.tretyakov.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;newVertex)</code></th>
+<td class="colLast">
+<div class="block">This method adds required vertex to the Graph.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertices(java.util.Collection)">addVertices</a></span>&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</code></th>
+<td class="colLast">
+<div class="block">This method adds a collection of vertices to the Graph.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteAllEdges(java.util.Collection)">deleteAllEdges</a></span>&#8203;(java.util.Collection&lt;<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</code></th>
+<td class="colLast">
+<div class="block">This method deletes the required collection of the edges from the Graph.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteAllVertices(java.util.Collection)">deleteAllVertices</a></span>&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</code></th>
+<td class="colLast">
+<div class="block">This method deletes all vertices in the required collection from the Graph.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteEdge(ru.nsu.fit.tretyakov.Edge)">deleteEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">
+<div class="block">This method deletes the edge from the graph.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteVertex(ru.nsu.fit.tretyakov.Vertex)">deleteVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This method deletes a vertex from the Graph.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dijkstra(ru.nsu.fit.tretyakov.Vertex)">dijkstra</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Algorithm that determines the shortest paths from current
+ vertex to other vertices.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#edgesCount()">edgesCount</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method allows user to know number of edges in the Graph.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method allows user to know is the Graph empty or not.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;[]</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toEdgeArray()">toEdgeArray</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This function creates an array of edges from the Graph.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;[]</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toVertexArray()">toVertexArray</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method creates an array of vertices from the Graph.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vertexCount()">vertexCount</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method allows user to know number of vertices in the Graph.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -184,16 +270,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addEdge(ru.nsu.fit.tretyakov.Vertex,ru.nsu.fit.tretyakov.Vertex)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addEdge</h4>
-<pre class="methodSignature">void&nbsp;addEdge&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;inVertex,
-             <a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;outVertex)</pre>
-</li>
-</ul>
 <a id="addVertex(ru.nsu.fit.tretyakov.Vertex)">
 <!--   -->
 </a>
@@ -201,6 +277,119 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>addVertex</h4>
 <pre class="methodSignature">void&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;newVertex)</pre>
+<div class="block">This method adds required vertex to the Graph. Cannot add vertex, that is
+ already in the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>newVertex</code> - is the vertex which will be added to the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="addVertices(java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addVertices</h4>
+<pre class="methodSignature">void&nbsp;addVertices&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</pre>
+<div class="block">This method adds a collection of vertices to the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>collection</code> - is the required collection of vertices
+                   which will be added to the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="deleteVertex(ru.nsu.fit.tretyakov.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteVertex</h4>
+<pre class="methodSignature">boolean&nbsp;deleteVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">This method deletes a vertex from the Graph. It doesn't throw an exception
+ when vertex isn't in the Graph. All incident edges with this vertex will be
+ deleted too.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - is the required vertex that will be deleted from the Graph.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if vertex has been deleted successfully.</dd>
+</dl>
+</li>
+</ul>
+<a id="deleteAllVertices(java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteAllVertices</h4>
+<pre class="methodSignature">boolean&nbsp;deleteAllVertices&#8203;(java.util.Collection&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</pre>
+<div class="block">This method deletes all vertices in the required collection from the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>collection</code> - is the required collection of vertices which will
+                   be deleted from the graph.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if all vertices in the collection have been deleted successfully.</dd>
+</dl>
+</li>
+</ul>
+<a id="toVertexArray()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toVertexArray</h4>
+<pre class="methodSignature"><a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;[]&nbsp;toVertexArray()</pre>
+<div class="block">This method creates an array of vertices from the Graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>array of all not-null vertices in the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="vertexCount()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>vertexCount</h4>
+<pre class="methodSignature">int&nbsp;vertexCount()</pre>
+<div class="block">This method allows user to know number of vertices in the Graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>number of not-null vertices in the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="addEdge(ru.nsu.fit.tretyakov.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addEdge</h4>
+<pre class="methodSignature">void&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">This method adds the required edge to the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - is the required edge which will be added to the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="addEdges(java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addEdges</h4>
+<pre class="methodSignature">void&nbsp;addEdges&#8203;(java.util.Collection&lt;<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</pre>
+<div class="block">This method adds the required collection of edges to the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>collection</code> - is the required collection of the edges which will be added
+                   to the Graph.</dd>
+</dl>
 </li>
 </ul>
 <a id="deleteEdge(ru.nsu.fit.tretyakov.Edge)">
@@ -209,16 +398,93 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>deleteEdge</h4>
-<pre class="methodSignature">void&nbsp;deleteEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<pre class="methodSignature">boolean&nbsp;deleteEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;edge)</pre>
+<div class="block">This method deletes the edge from the graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>edge</code> - is the required edge that will be deleted from the graph.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if the edge is successfully deleted from the Graph.
+ Otherwise, return false.</dd>
+</dl>
 </li>
 </ul>
-<a id="deleteVertex(ru.nsu.fit.tretyakov.Vertex)">
+<a id="deleteAllEdges(java.util.Collection)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteAllEdges</h4>
+<pre class="methodSignature">boolean&nbsp;deleteAllEdges&#8203;(java.util.Collection&lt;<a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;collection)</pre>
+<div class="block">This method deletes the required collection of the edges from the Graph.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>collection</code> - is the required collection of the edges.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if all edges in this collection have been deleted.
+ Otherwise, return false.</dd>
+</dl>
+</li>
+</ul>
+<a id="toEdgeArray()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toEdgeArray</h4>
+<pre class="methodSignature"><a href="Edge.html" title="class in ru.nsu.fit.tretyakov">Edge</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;[]&nbsp;toEdgeArray()</pre>
+<div class="block">This function creates an array of edges from the Graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>created array of edges from the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="edgesCount()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>edgesCount</h4>
+<pre class="methodSignature">int&nbsp;edgesCount()</pre>
+<div class="block">This method allows user to know number of edges in the Graph.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>number of edges in the Graph.</dd>
+</dl>
+</li>
+</ul>
+<a id="isEmpty()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isEmpty</h4>
+<pre class="methodSignature">boolean&nbsp;isEmpty()</pre>
+<div class="block">This method allows user to know is the Graph empty or not.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if the Graph doesn't contain any vertex.
+ Otherwise, return false.</dd>
+</dl>
+</li>
+</ul>
+<a id="dijkstra(ru.nsu.fit.tretyakov.Vertex)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>deleteVertex</h4>
-<pre class="methodSignature">void&nbsp;deleteVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<h4>dijkstra</h4>
+<pre class="methodSignature">java.util.List&lt;<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&gt;&nbsp;dijkstra&#8203;(<a href="Vertex.html" title="class in ru.nsu.fit.tretyakov">Vertex</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;vertex)</pre>
+<div class="block">Algorithm that determines the shortest paths from current
+ vertex to other vertices.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - is the required vertex</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>list of all shortest paths to the specified vertex,
+ that is sorted by increasing distance of vertices.</dd>
+</dl>
 </li>
 </ul>
 </li>

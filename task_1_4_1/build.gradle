@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group 'ru.nsu.fit.tretyakov'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.4' // assertions
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1' // parametrized test
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1' // assertJ
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "ru/nsu/fit/tretyakov/Main.class"
+            ])
+        }))
+    }
+}

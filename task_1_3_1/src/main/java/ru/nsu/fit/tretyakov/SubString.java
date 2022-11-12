@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This class can find a substring in required string.
@@ -57,7 +58,7 @@ public class SubString {
      * @throws IOException
      * @throws NullPointerException
      */
-    public Integer findSubString(String string) throws IOException, NullPointerException {
+    public ArrayList<Integer> findSubString(String string) throws IOException, NullPointerException {
         return findSubstring(this.file, string);
     }
 
@@ -69,23 +70,21 @@ public class SubString {
      * @throws IOException
      * @throws NullPointerException
      */
-    public Integer findSubstring() throws IOException, NullPointerException {
+    public ArrayList<Integer> findSubstring() throws IOException, NullPointerException {
         return findSubstring(this.file, this.string);
     }
 
     /**
-     * Main method of finding a substring in required string. It uses a BufferReader,
-     * which uses safe-stream methods and reads a file char by char.
-     *
-     * @param file   is the required file in which this method
-     *               will try to find a substring.
-     * @param string is the required substring that needs to find.
-     * @return index of the beginning of the substring in file if this substring
-     * exist. Otherwise, return null.
-     * @throws IOException          if BufferReader cannot open the file
-     * @throws NullPointerException if the file or a string is null
+     * Function uses Knuth-Morris-Pratt algorithm to find all begin-indexes of
+     * current substring (pattern) in the current file.
+     * @param file is the current file where will be started a search.
+     * @param string is the pattern that is needed to find
+     * @return an ArrayList of all begin-indexes of substring in the current stirng
+     * @throws IOException if a BufferReader could not read a file
+     * @throws NullPointerException if one of the file or stirng is null
      */
-    public Integer findSubstring(File file, String string) throws IOException, NullPointerException {
+    public ArrayList<Integer> findSubstring(File file, String string)
+            throws IOException, NullPointerException {
 
         if (file == null) {
             throw new NullPointerException("File is null");
@@ -94,38 +93,61 @@ public class SubString {
             throw new NullPointerException("String is empty");
         }
 
+        ArrayList<Integer> indexList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        char[] charString = string.toCharArray();
-        int idx = 0, fileIdx = 0;
-        boolean hasStart = false;
-        Integer position = null;
-
         while (br.ready()) {
+            var nextString = br.readLine();
+            indexList.addAll(knuthMorrisPratt(nextString,string));
+        }
 
-            int curChar = br.read();
+        br.close();
 
-            if (charString[idx++] == curChar) {
-                if (!hasStart) {
-                    position = fileIdx;
-                    hasStart = true;
-                }
-                if (charString.length == idx) {
-                    break;
-                }
-            } else {
-                idx = 0;
-                if (charString[idx] == curChar) {
-                    position = fileIdx;
-                    idx++;
+        if (indexList.isEmpty()) {
+            return null;
+        }
+        return indexList;
+    }
+
+    private ArrayList<Integer> knuthMorrisPratt(String string, String pattern) {
+
+        int pl = pattern.length();
+        int sl = string.length();
+        int[] prefixArray = new int[pattern.length()];
+        ArrayList<Integer> result = new ArrayList<>();
+
+        prefixFunction(pattern, prefixArray);
+
+        int i = 0, j = 0;
+        while ((sl - i) >= (pl - j)) {
+            if (pattern.charAt(j) == string.charAt(i)) {
+                i++;
+                j++;
+            }
+            if (j == pl) {
+                result.add(i - j);
+                j = prefixArray[j - 1];
+            } else if (i < sl && pattern.charAt(j) != string.charAt(i)) {
+                if (j != 0) {
+                    j = prefixArray[j - 1];
                 } else {
-                    hasStart = false;
-                    position = null;
+                    i = i + 1;
                 }
             }
-            fileIdx++;
+        } return result;
+    }
+
+    private void prefixFunction(String pattern, int[] prefixArray) {
+
+        prefixArray[0] = 0;
+
+        for (int i = 1; i < pattern.length(); i++) {
+            int index = prefixArray[i - 1];
+            while (index > 0 && pattern.charAt(i) != pattern.charAt(index)) {
+                index = prefixArray[index - 1];
+            }
+            if (pattern.charAt(i) == pattern.charAt(index)) index++;
+            prefixArray[i] = index;
         }
-        br.close();
-        return position;
     }
 }

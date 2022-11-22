@@ -7,29 +7,31 @@ import java.util.ArrayList;
  * This class can find a substring in required string.
  * It supports some variants of a constructor.
  */
-public class SubString {
+public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
 
-    private File file;
+    private InputStream stream;
     private String string;
+
+    private static final int BUFSIZE = 1024;
 
     /**
      * Empty constructor. Needs if user wants to pass his params into
      * function directly.
      */
-    public SubString() {
+    public KnuthMorrisPrattFinder() {
     }
 
     /**
      * Constructor that gets file from a user.
      *
-     * @param file is the required file
+     * @param stream is the required stream
      * @throws NullPointerException if passing file is null
      */
-    public SubString(File file) throws NullPointerException {
-        if (file == null) {
-            throw new NullPointerException("File is null");
+    public KnuthMorrisPrattFinder(InputStream stream) throws NullPointerException {
+        if (stream == null) {
+            throw new NullPointerException("InputStream is null");
         }
-        this.file = file;
+        this.stream = stream;
         this.string = null;
     }
 
@@ -37,12 +39,14 @@ public class SubString {
      * Constructor with file and string as a parameters. Used if user
      * don't want to pass any parameter to a function.
      *
-     * @param file   is the required file
+     * @param stream   is the required file
      * @param string is the required substring that needs to find
      * @throws NullPointerException
+     * @throws IOException
      */
-    public SubString(File file, String string) throws NullPointerException {
-        this(file);
+    public KnuthMorrisPrattFinder(InputStream stream, String string)
+            throws NullPointerException, IOException{
+        this(stream);
         if (string == null) {
             throw new NullPointerException("String is null");
         }
@@ -55,11 +59,12 @@ public class SubString {
      * @param string is the required substring that need to find.
      * @return beginning index of the substring in file if this substring
      * exist. Otherwise, return null.
-     * @throws IOException
      * @throws NullPointerException
+     * @throws IOException
      */
-    public ArrayList<Integer> findSubString(String string) throws IOException, NullPointerException {
-        return findSubstring(this.file, string);
+    @Override
+    public ArrayList<Integer> findSubString(String string) throws NullPointerException, IOException{
+        return findSubstring(this.stream, string);
     }
 
     /**
@@ -67,26 +72,27 @@ public class SubString {
      *
      * @return beginning index of the substring in file if this substring
      * exist. Otherwise, return null.
-     * @throws IOException
      * @throws NullPointerException
+     * @throws IOException
      */
-    public ArrayList<Integer> findSubstring() throws IOException, NullPointerException {
-        return findSubstring(this.file, this.string);
+    @Override
+    public ArrayList<Integer> findSubstring() throws NullPointerException, IOException{
+        return findSubstring(this.stream, this.string);
     }
 
     /**
      * Function uses Knuth-Morris-Pratt algorithm to find all begin-indexes of
      * current substring (pattern) in the current file.
-     * @param file is the current file where will be started a search.
+     * @param stream is the current file where will be started a search.
      * @param string is the pattern that is needed to find
      * @return an ArrayList of all begin-indexes of substring in the current stirng
-     * @throws IOException if a BufferReader could not read a file
      * @throws NullPointerException if one of the file or stirng is null
      */
-    public ArrayList<Integer> findSubstring(File file, String string)
-            throws IOException, NullPointerException {
+    @Override
+    public ArrayList<Integer> findSubstring(InputStream stream, String string)
+            throws NullPointerException, IOException {
 
-        if (file == null) {
+        if (stream == null) {
             throw new NullPointerException("File is null");
         }
         if (string == null) {
@@ -94,11 +100,16 @@ public class SubString {
         }
 
         ArrayList<Integer> indexList = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+        char[] buffer = new char[BUFSIZE];
+        int[] prefixArray = new int[string.length()];
+        int i = 0, j = 0;
+
+        prefixFunction(string, prefixArray);
 
         while (br.ready()) {
-            var nextString = br.readLine();
-            indexList.addAll(knuthMorrisPratt(nextString,string));
+            var size = br.read(buffer,0,BUFSIZE);
+            indexList.addAll(knuthMorrisPratt(buffer,string, prefixArray,i, j));
         }
 
         br.close();
@@ -109,25 +120,21 @@ public class SubString {
         return indexList;
     }
 
-    private ArrayList<Integer> knuthMorrisPratt(String string, String pattern) {
+    private ArrayList<Integer> knuthMorrisPratt(char[] string, String pattern, int[] prefixArray, int i, int j) {
 
         int pl = pattern.length();
-        int sl = string.length();
-        int[] prefixArray = new int[pattern.length()];
+        int sl = string.length;
         ArrayList<Integer> result = new ArrayList<>();
 
-        prefixFunction(pattern, prefixArray);
-
-        int i = 0, j = 0;
         while ((sl - i) >= (pl - j)) {
-            if (pattern.charAt(j) == string.charAt(i)) {
+            if (pattern.charAt(j) == string[i]) {
                 i++;
                 j++;
             }
             if (j == pl) {
                 result.add(i - j);
                 j = prefixArray[j - 1];
-            } else if (i < sl && pattern.charAt(j) != string.charAt(i)) {
+            } else if (i < sl && pattern.charAt(j) != string[i]) {
                 if (j != 0) {
                     j = prefixArray[j - 1];
                 } else {

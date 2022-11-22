@@ -83,17 +83,6 @@ public class KnuthMorrisPrattTest {
     }
 
     @Test
-    public void abraSubstringTest() throws IOException {
-
-        SubstringFinderAlgorithm subString = new KnuthMorrisPrattFinder(file, "a\r\nbra");
-        ArrayList<Integer> arrayList = subString.findSubstring();
-
-        assertEquals(2,arrayList.size());
-        assertEquals(19,arrayList.get(0));
-        assertEquals(28,arrayList.get(1));
-    }
-
-    @Test
     public void stringSubstringTest() throws IOException {
         SubstringFinderAlgorithm subString =
                 new KnuthMorrisPrattFinder(new ByteArrayInputStream("hello".getBytes()), "l");

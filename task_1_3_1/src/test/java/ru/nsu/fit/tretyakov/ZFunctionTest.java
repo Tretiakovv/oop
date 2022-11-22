@@ -82,16 +82,6 @@ public class ZFunctionTest {
     }
 
     @Test
-    public void abraSubstringTest() throws IOException {
-        SubstringFinderAlgorithm subString = new ZFinder(file, "a\r\nbra");
-        ArrayList<Integer> arrayList = subString.findSubstring();
-
-        assertEquals(2,arrayList.size());
-        assertEquals(19,arrayList.get(0));
-        assertEquals(28,arrayList.get(1));
-    }
-
-    @Test
     public void stringSubstringTest() throws IOException {
         SubstringFinderAlgorithm subString =
                 new ZFinder(new ByteArrayInputStream("hello".getBytes()), "l");

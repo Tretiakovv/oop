@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.tretyakov","l":"SubString"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.fit.tretyakov","l":"KnuthMorrisPrattFinder"},{"p":"ru.nsu.fit.tretyakov","l":"SubstringFinderAlgorithm"},{"p":"ru.nsu.fit.tretyakov","l":"ZFinder"}]

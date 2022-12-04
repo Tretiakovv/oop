@@ -6,15 +6,16 @@
 <title>KnuthMorrisPrattFinder (task_1_3_1 API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.min.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../jquery-ui.overrides.css" title="Style">
 <script type="text/javascript" src="../../../../script.js"></script>
 <script type="text/javascript" src="../../../../jquery/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils.min.js"></script>
 <!--[if IE]>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../jquery/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-ui.min.js"></script>
 </head>
 <body>
 <script type="text/javascript"><!--
@@ -145,7 +146,7 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <ul class="blockList">
 <li class="blockList">
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<section role="region">
+<section>
 <ul class="blockList">
 <li class="blockList"><a id="constructor.summary">
 <!--   -->
@@ -181,7 +182,7 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 </ul>
 </section>
 <!-- ========== METHOD SUMMARY =========== -->
-<section role="region">
+<section>
 <ul class="blockList">
 <li class="blockList"><a id="method.summary">
 <!--   -->
@@ -235,7 +236,7 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <ul class="blockList">
 <li class="blockList">
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section role="region">
+<section>
 <ul class="blockList">
 <li class="blockList"><a id="constructor.detail">
 <!--   -->
@@ -286,8 +287,8 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <dd><code>stream</code> - is the required file</dd>
 <dd><code>string</code> - is the required substring that needs to find</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code></dd>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.NullPointerException</code> - if one of the file or string is null</dd>
+<dd><code>java.io.IOException</code> - if the program cannot read from the file</dd>
 </dl>
 </li>
 </ul>
@@ -295,7 +296,7 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 </ul>
 </section>
 <!-- ============ METHOD DETAIL ========== -->
-<section role="region">
+<section>
 <ul class="blockList">
 <li class="blockList"><a id="method.detail">
 <!--   -->
@@ -320,8 +321,8 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <dd>beginning index of the substring in file if this substring
  exist. Otherwise, return null.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code></dd>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.NullPointerException</code> - if one of the file or string is null</dd>
+<dd><code>java.io.IOException</code> - if the program cannot read from the file</dd>
 </dl>
 </li>
 </ul>
@@ -342,8 +343,8 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <dd>beginning index of the substring in file if this substring
  exist. Otherwise, return null.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code></dd>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.lang.NullPointerException</code> - if one of the file or string is null</dd>
+<dd><code>java.io.IOException</code> - if the program cannot read from the file</dd>
 </dl>
 </li>
 </ul>
@@ -366,9 +367,9 @@ implements <a href="SubstringFinderAlgorithm.html" title="interface in ru.nsu.fi
 <dd><code>stream</code> - is the current file where will be started a search.</dd>
 <dd><code>string</code> - is the pattern that is needed to find</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>an ArrayList of all begin-indexes of substring in the current stirng</dd>
+<dd>an ArrayList of all begin-indexes of substring in the current string</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.NullPointerException</code> - if one of the file or stirng is null</dd>
+<dd><code>java.lang.NullPointerException</code> - if one of the file or string is null</dd>
 <dd><code>java.io.IOException</code> - if there's an error with a InputStream</dd>
 </dl>
 </li>

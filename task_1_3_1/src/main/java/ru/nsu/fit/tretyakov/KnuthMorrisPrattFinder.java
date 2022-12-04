@@ -9,10 +9,9 @@ import java.util.ArrayList;
  */
 public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
 
+    private static final int BUFSIZE = 1024;
     private InputStream stream;
     private String string;
-
-    private static final int BUFSIZE = 1024;
 
     /**
      * Empty constructor. Needs if user wants to pass his params into
@@ -39,13 +38,13 @@ public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
      * Constructor with file and string as a parameters. Used if user
      * don't want to pass any parameter to a function.
      *
-     * @param stream   is the required file
+     * @param stream is the required file
      * @param string is the required substring that needs to find
-     * @throws NullPointerException
-     * @throws IOException
+     * @throws NullPointerException if one of the file or string is null
+     * @throws IOException          if the program cannot read from the file
      */
     public KnuthMorrisPrattFinder(InputStream stream, String string)
-            throws NullPointerException, IOException{
+            throws NullPointerException, IOException {
         this(stream);
         if (string == null) {
             throw new NullPointerException("String is null");
@@ -59,11 +58,11 @@ public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
      * @param string is the required substring that need to find.
      * @return beginning index of the substring in file if this substring
      * exist. Otherwise, return null.
-     * @throws NullPointerException
-     * @throws IOException
+     * @throws NullPointerException if one of the file or string is null
+     * @throws IOException          if the program cannot read from the file
      */
     @Override
-    public ArrayList<Integer> findSubString(String string) throws NullPointerException, IOException{
+    public ArrayList<Integer> findSubString(String string) throws NullPointerException, IOException {
         return findSubstring(this.stream, string);
     }
 
@@ -72,21 +71,22 @@ public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
      *
      * @return beginning index of the substring in file if this substring
      * exist. Otherwise, return null.
-     * @throws NullPointerException
-     * @throws IOException
+     * @throws NullPointerException if one of the file or string is null
+     * @throws IOException          if the program cannot read from the file
      */
     @Override
-    public ArrayList<Integer> findSubstring() throws NullPointerException, IOException{
+    public ArrayList<Integer> findSubstring() throws NullPointerException, IOException {
         return findSubstring(this.stream, this.string);
     }
 
     /**
      * Function uses Knuth-Morris-Pratt algorithm to find all begin-indexes of
      * current substring (pattern) in the current file.
+     *
      * @param stream is the current file where will be started a search.
      * @param string is the pattern that is needed to find
-     * @return an ArrayList of all begin-indexes of substring in the current stirng
-     * @throws NullPointerException if one of the file or stirng is null
+     * @return an ArrayList of all begin-indexes of substring in the current string
+     * @throws NullPointerException if one of the file or string is null
      */
     @Override
     public ArrayList<Integer> findSubstring(InputStream stream, String string)
@@ -108,8 +108,8 @@ public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
         prefixFunction(string, prefixArray);
 
         while (br.ready()) {
-            var size = br.read(buffer,0,BUFSIZE);
-            indexList.addAll(knuthMorrisPratt(buffer,string, prefixArray,i, j));
+            var size = br.read(buffer, 0, BUFSIZE);
+            indexList.addAll(knuthMorrisPratt(buffer, string, prefixArray, i, j));
         }
 
         br.close();
@@ -141,7 +141,8 @@ public class KnuthMorrisPrattFinder implements SubstringFinderAlgorithm {
                     i = i + 1;
                 }
             }
-        } return result;
+        }
+        return result;
     }
 
     private void prefixFunction(String pattern, int[] prefixArray) {

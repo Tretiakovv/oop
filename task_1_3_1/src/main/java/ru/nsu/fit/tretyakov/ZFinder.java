@@ -56,7 +56,7 @@ public class ZFinder implements SubstringFinderAlgorithm {
      *
      * @param stream is the required file
      * @param string is the required substring that needs to find
-     * @throws NullPointerException
+     * @throws NullPointerException if one of the file or string is null
      */
     public ZFinder(InputStream stream, String string)
             throws NullPointerException {
@@ -69,6 +69,7 @@ public class ZFinder implements SubstringFinderAlgorithm {
 
     /**
      * Main method that finds a substring in a string.
+     *
      * @param stream is the required stream of characters. It can be String, File, Stream etc.
      * @param string is the required substring which is wanted to be found.
      * @return the ArrayList of all founded occurrences of substring.
@@ -99,6 +100,7 @@ public class ZFinder implements SubstringFinderAlgorithm {
 
     /**
      * Overload of the main method without parameters.
+     *
      * @return the ArrayList of all founded occurrences of substring.
      * @throws IOException if there's an error with a InputStream
      */
@@ -109,6 +111,7 @@ public class ZFinder implements SubstringFinderAlgorithm {
 
     /**
      * Overload of the main method with a single string parameter.
+     *
      * @param string is the required substring which is wanted to be found.
      * @return the ArrayList of all founded occurrences of substring.
      * @throws IOException if there's an error with a InputStream
@@ -145,24 +148,24 @@ public class ZFinder implements SubstringFinderAlgorithm {
         }
     }
 
-    private char[] createPSTArray(char[] text, char[] pattern){
+    private char[] createPSTArray(char[] text, char[] pattern) {
         char[] newString = new char[text.length + pattern.length + 1];
-        System.arraycopy(pattern,0,newString,0,pattern.length);
+        System.arraycopy(pattern, 0, newString, 0, pattern.length);
         newString[pattern.length] = '$';
-        System.arraycopy(text,0,newString,pattern.length+1,text.length);
+        System.arraycopy(text, 0, newString, pattern.length + 1, text.length);
         return newString;
     }
 
     private ArrayList<Integer> processText(char[] text, char[] pattern, int i) {
 
         // making pattern + '$' + text string
-        char[] newString = createPSTArray(text,pattern);
+        char[] newString = createPSTArray(text, pattern);
 
         Integer[] zf = new Integer[newString.length];
         getZarr(newString, zf);
         ArrayList<Integer> result = new ArrayList<>();
 
-        while (newString[i] != 0){
+        while (newString[i] != 0) {
             if (zf[i] != null && zf[i] == pattern.length) {
                 result.add(i - pattern.length - 1);
             }

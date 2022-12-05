@@ -1,77 +1,48 @@
 package ru.nsu.fit.tretyakov;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * This class is the student's grade book. In it user can get
- * information about his score, subjects, GPA (Average Grade Point) and
+ * information about his score, subjects, average grade point and
  * his honor diploma.
  */
 public class Gradebook {
 
-    private final HashMap<Integer, HashMap<String, Integer>> gradeBook;
-    private Float GPA;
+    private String name, group, numberOfGradeBook;
+    private final Map<Integer, HashMap<String, Subject>> gradeBook;
+    private final Set<String> typesOfCredit;
+    private Float averageGradePoint;
     private boolean scholarship, honorDiploma;
     private Integer subjects, thesis;
 
     /**
      * Constructor of the grade book.
      */
-    public Gradebook() {
+    public Gradebook(String name, String group, String numberOfGradeBook) {
+        this.name = name;
+        this.group = group;
+        this.numberOfGradeBook = numberOfGradeBook;
         this.gradeBook = new HashMap<>();
         this.scholarship = this.honorDiploma = false;
-        this.GPA = 0.f;
+        this.averageGradePoint = 0.f;
         this.subjects = this.thesis = 0;
+        String[] creditTypes = new String[]{"Exam", "DifCredit", "UndifCredit"};
+        this.typesOfCredit = new HashSet<>(List.of(creditTypes));
     }
 
     /**
-     * This method adds course with a specific subject to the grade book.
+     * This method adds a semester to the grade book.
      *
-     * @param course  is the course to which will be
-     *                contained new subject in the grade book.
-     * @param subject is the required subject that will be added to the grade book.
-     * @return true if the course with subject was successfully added.
+     * @param semester is the required semester.
+     * @return true if a semester was successfully added.
      * Otherwise, return false.
      */
-    public boolean addCourse(Integer course, String subject) {
-        var hasCourse = addCourse(course);
-        if (!hasCourse) return false;
-        gradeBook.get(course).put(subject, 0);
-        return true;
-    }
-
-    /**
-     * This method adds a course to the grade book.
-     *
-     * @param course is the required course.
-     * @return true if a course was successfully added.
-     * Otherwise, return false.
-     */
-    public boolean addCourse(Integer course) {
-        if (gradeBook.get(course) != null) {
+    public boolean addSemester(Integer semester) {
+        if (gradeBook.get(semester) != null) {
             return false;
         }
-        gradeBook.put(course, new HashMap<>());
-        return true;
-    }
-
-    /**
-     * This method adds a specific subject with value
-     * to the specific course in the grade book.
-     *
-     * @param course  is the required course that contains current course.
-     * @param subject is the subject which will be evaluated by current value.
-     * @param value   is the value of the specific subject in the grade book.
-     * @return true if the subject with grade was added successfully.
-     * Otherwise, return false.
-     * @throws IllegalStateException if there is already exist a course
-     *                               or subject with specific value.
-     */
-    public boolean addSubject(Integer course, String subject, Integer value) throws IllegalStateException {
-        boolean hasCourse = addSubject(course, subject);
-        if (!hasCourse) return false;
-        setGrade(course, subject, value);
+        gradeBook.put(semester, new HashMap<>());
         return true;
     }
 
@@ -83,18 +54,22 @@ public class Gradebook {
      * @param subject is the subject which will be evaluated by current value.
      * @return true if the subject with grade was added successfully.
      * Otherwise, return false.
-     * @throws IllegalStateException
+     * @throws IllegalStateException if there is already exist a course
+     *                               or subject with specific value.
      */
-    public boolean addSubject(Integer course, String subject) throws IllegalStateException {
-        if (gradeBook.get(course) == null) {
+    public void addSubject(Integer course, String subject, String creditType)
+            throws IllegalStateException {
+        if (!typesOfCredit.contains(creditType)) {
+            throw new IllegalStateException("This credit type doesn't contained in grade book");
+        }
+        if (gradeBook.get(course) == null){
             throw new IllegalStateException("This course doesn't exist in grade book");
         }
-        if (gradeBook.get(course).get(subject) != null) {
-            return false;
+        if (gradeBook.get(course).get(subject) != null){
+            throw new IllegalStateException("This subject is already exist in grade book");
         }
-        gradeBook.get(course).put(subject, 0);
+        gradeBook.get(course).put(subject, new Subject(creditType));
         this.subjects++;
-        return true;
     }
 
     /**
@@ -106,8 +81,8 @@ public class Gradebook {
      * @throws IllegalStateException if required course or grade are don't exist in the grade book.
      */
     public Integer getGrade(Integer course, String subject) throws IllegalStateException {
-        checkGrade(course, subject);
-        return gradeBook.get(course).get(subject);
+        handleSubject(course, subject);
+        return gradeBook.get(course).get(subject).grade;
     }
 
     /**
@@ -116,11 +91,56 @@ public class Gradebook {
      * @param course  is the required course in the grade book.
      * @param subject is the required subject in the specific course.
      * @param value   is the required value of the subject in the grade book.
+     * @throws IllegalStateException if the passed value isn't validated.
      */
-    public void setGrade(Integer course, String subject, Integer value) {
-        checkGrade(course, subject);
-        gradeBook.get(course).put(subject, value);
+    public void setGrade(Integer course, String subject, Integer value)
+            throws IllegalStateException {
+        handleSubject(course, subject);
+        var curSubject = gradeBook.get(course).get(subject);
+
+        if (Objects.equals(curSubject.creditType, "UndifCredit")) {
+            if (value == 2 || value == 5) {
+                gradeBook.get(course).get(subject).grade = value;
+            } else {
+                throw new IllegalStateException(
+                        "Undifferentiated credit grade cannot be evaluated by this value"
+                );
+            }
+        } else if (value >= 2 && value <= 5) {
+            gradeBook.get(course).get(subject).grade = value;
+        } else {
+            throw new IllegalStateException(
+                    "Subject cannot be evaluated by this value"
+            );
+        }
         computeScore();
+    }
+
+    public void printGradebook() {
+
+        System.out.printf("Student's name: %s\n",this.name);
+        System.out.printf("Student's group: %s\n",this.group);
+        System.out.printf("Student's grade book number: %s\n\n",this.numberOfGradeBook);
+
+        System.out.println("-------------------------------\n");
+
+        System.out.printf("Student's average grade point: %f\n",this.averageGradePoint);
+        if (this.honorDiploma) System.out.println("Student's honor diploma: YES");
+        else System.out.println("Student's honor diploma: NO");
+
+        System.out.println("-------------------------------\n");
+
+        for (var semester: gradeBook.keySet()){
+            System.out.printf("Semester #%d\n\n",semester);
+            System.out.println("-------------------------------\n");
+            for (var subject: gradeBook.get(semester).keySet()){
+                var curSubject =  gradeBook.get(semester).get(subject);
+                System.out.printf("Subject: %s   |   Credit type: %s   |   Grade: %d\n\n",
+                        subject, curSubject.creditType, curSubject.grade);
+            }
+        }
+
+        System.out.println("-------------------------------\n");
     }
 
     private void computeDiploma() {
@@ -130,7 +150,7 @@ public class Gradebook {
 
         for (var courses : gradeBook.keySet()) {
             for (var subjects : gradeBook.get(courses).keySet()) {
-                var grade = gradeBook.get(courses).get(subjects);
+                var grade = gradeBook.get(courses).get(subjects).grade;
                 if (grade < 4) honorDiploma = false;
                 else if (grade == 5) countFive++;
             }
@@ -147,15 +167,15 @@ public class Gradebook {
 
         for (var courses : gradeBook.keySet()) {
             for (var subjects : gradeBook.get(courses).keySet()) {
-                var grade = gradeBook.get(courses).get(subjects);
+                var grade = gradeBook.get(courses).get(subjects).grade;
                 if (grade < 4) scholarship = false;
                 sumOfGrades += grade;
             }
         }
-        GPA = sumOfGrades / subjects;
+        averageGradePoint = sumOfGrades / subjects;
     }
 
-    private void checkGrade(Integer course, String subject) throws IllegalStateException {
+    private void handleSubject(Integer course, String subject) throws IllegalStateException {
         if (gradeBook.get(course) == null) {
             throw new IllegalStateException("This course doesn't exist in grade book");
         }
@@ -208,6 +228,16 @@ public class Gradebook {
      * @return value of the GPA.
      */
     public Float getGPA() {
-        return GPA;
+        return averageGradePoint;
+    }
+
+    private static class Subject {
+        private final String creditType;
+        private Integer grade;
+
+        public Subject(String creditType) {
+            this.creditType = creditType;
+            this.grade = 0;
+        }
     }
 }

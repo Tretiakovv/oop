@@ -3,6 +3,8 @@ package ru.nsu.fit.tretyakov;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GradebookTest {
@@ -17,48 +19,48 @@ public class GradebookTest {
     @Test
     public void checkGPATest() {
 
-        gb.addSubject(1, "Math", "Exam");
-        gb.addSubject(1, "OOP", "Exam");
-        gb.addSubject(1, "English", "Exam");
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "OOP", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "English", Gradebook.CreditType.EXAM);
 
         gb.setGrade(1, "Math", 5);
         gb.setGrade(1, "OOP", 5);
         gb.setGrade(1, "English", 4);
 
-        assertEquals((float) 14 / 3, gb.getGPA());
+        assertEquals((float) 14 / 3, gb.getSemester(1).getAverageGradePoint());
     }
 
     @Test
     public void getThesisTest() {
         gb.addSemester(2);
-        gb.addSubject(2, "Math", "Exam");
-        gb.setThesis(5);
-        assertEquals(5, gb.getThesis());
+        gb.addSubject(2, "Math", Gradebook.CreditType.EXAM);
+        gb.setThesisGrade(5);
+        assertEquals(5, gb.getThesisGrade());
     }
 
     @Test
     public void checkScholarship() {
 
-        gb.addSubject(1, "Math", "Exam");
-        gb.addSubject(1, "OOP", "Exam");
-        gb.addSubject(1, "English", "Exam");
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "OOP", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "English", Gradebook.CreditType.EXAM);
 
         gb.setGrade(1, "Math", 5);
         gb.setGrade(1, "OOP", 5);
         gb.setGrade(1, "English", 3);
 
-        assertFalse(gb.getScholarShip());
+        assertFalse(gb.getSemester(1).getScolarship());
     }
 
     @Test
     public void checkHonorDiplomaTrue() {
 
-        gb.setThesis(5);
+        gb.setThesisGrade(5);
 
-        gb.addSubject(1, "Math", "Exam");
-        gb.addSubject(1, "OOP", "Exam");
-        gb.addSubject(1, "Physics", "Exam");
-        gb.addSubject(1, "English", "Exam");
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "OOP", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "Physics", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "English", Gradebook.CreditType.EXAM);
 
         gb.setGrade(1, "Math", 5);
         gb.setGrade(1, "OOP", 5);
@@ -71,12 +73,12 @@ public class GradebookTest {
     @Test
     public void checkHonorDiplomaFalse() {
 
-        gb.setThesis(5);
+        gb.setThesisGrade(5);
 
-        gb.addSubject(1, "Math", "Exam");
-        gb.addSubject(1, "OOP", "Exam");
-        gb.addSubject(1, "Physics", "Exam");
-        gb.addSubject(1, "English", "Exam");
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "OOP", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "Physics", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "English", Gradebook.CreditType.EXAM);
 
         gb.setGrade(1, "Math", 5);
         gb.setGrade(1, "OOP", 5);
@@ -96,7 +98,7 @@ public class GradebookTest {
             gb.getGrade(2, "Math");
         });
         assertThrows(IllegalStateException.class, () -> {
-            gb.addSubject(2, "Math", "Exam");
+            gb.addSubject(2, "Math", Gradebook.CreditType.EXAM);
         });
     }
 
@@ -106,35 +108,32 @@ public class GradebookTest {
     }
 
     @Test
-    public void addExistingSubject() {
-        gb.addSubject(1, "Math", "Exam");
+    public void addExistingSemester() {
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
         assertThrows(IllegalStateException.class, () -> {
-            gb.addSubject(1, "Math", "Exam");
+            gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
         });
     }
 
     @Test
     public void creditsExceptions() {
         assertThrows(IllegalStateException.class, () -> {
-            gb.addSubject(1, "Math", "AAA");
-        });
-        assertThrows(IllegalStateException.class, () -> {
-            gb.addSubject(1, "Math", "UndifCredit");
+            gb.addSubject(1, "Math", Gradebook.CreditType.UNDIF_CREDIT);
             gb.setGrade(1, "Math", 3);
         });
         assertThrows(IllegalStateException.class, () -> {
-            gb.addSubject(1, "Math", "Exam");
+            gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
             gb.setGrade(1, "Math", 6);
         });
     }
 
     @Test
     public void printGradebook() {
-        gb.addSubject(1, "Math", "Exam");
-        gb.addSubject(1, "OOP", "Exam");
-        gb.addSubject(1, "Theory of probability", "Exam");
-        gb.addSubject(1, "Imperative programming", "Exam");
-        gb.addSubject(1, "History", "DifCredit");
+        gb.addSubject(1, "Math", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "OOP", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "Theory of probability", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "Imperative programming", Gradebook.CreditType.EXAM);
+        gb.addSubject(1, "History", Gradebook.CreditType.DIF_CREDIT);
 
         gb.setGrade(1, "Math", 5);
         gb.setGrade(1, "Theory of probability", 4);
@@ -144,11 +143,11 @@ public class GradebookTest {
 
         gb.addSemester(2);
 
-        gb.addSubject(2, "Declarative programming", "DifCredit");
-        gb.addSubject(2, "English", "DifCredit");
-        gb.addSubject(2, "Team project", "DifCredit");
-        gb.addSubject(2, "Physics", "DifCredit");
-        gb.addSubject(2, "PE", "UndifCredit");
+        gb.addSubject(2, "Declarative programming", Gradebook.CreditType.DIF_CREDIT);
+        gb.addSubject(2, "English", Gradebook.CreditType.DIF_CREDIT);
+        gb.addSubject(2, "Team project", Gradebook.CreditType.DIF_CREDIT);
+        gb.addSubject(2, "Physics", Gradebook.CreditType.DIF_CREDIT);
+        gb.addSubject(2, "PE", Gradebook.CreditType.UNDIF_CREDIT);
 
         gb.setGrade(2, "Declarative programming", 5);
         gb.setGrade(2, "English", 4);
@@ -157,5 +156,12 @@ public class GradebookTest {
         gb.setGrade(2, "PE", 5);
 
         gb.printGradebook();
+
+        List<Gradebook.Subject> difCreditSubjects =
+                gb.getSubjectsByType(1, Gradebook.CreditType.DIF_CREDIT);
+        List<Gradebook.Subject> examSubjects =
+                gb.getSubjectsByType(1, Gradebook.CreditType.EXAM);
+        assertEquals(1,difCreditSubjects.size());
+        assertEquals(4,examSubjects.size());
     }
 }

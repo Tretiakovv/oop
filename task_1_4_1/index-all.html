@@ -100,7 +100,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">This method adds a semester to the grade book.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#addSubject(java.lang.Integer,java.lang.String,java.lang.String)">addSubject(Integer, String, String)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#addSubject(java.lang.Integer,java.lang.String,ru.nsu.fit.tretyakov.Gradebook.CreditType)">addSubject(Integer, String, Gradebook.CreditType)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
 <dd>
 <div class="block">This method adds a specific subject WITHOUT a value
  to the semester in grade book.</div>
@@ -111,10 +111,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">G</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getGPA()">getGPA()</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
-<dd>
-<div class="block">Getter of the Average Grade Point.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getGrade(java.lang.Integer,java.lang.String)">getGrade(Integer, String)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
 <dd>
 <div class="block">Getter of the subject's grade.</div>
@@ -123,13 +119,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Getter of the honor diploma.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getScholarShip()">getScholarShip()</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getSemester(java.lang.Integer)">getSemester(Integer)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
 <dd>
-<div class="block">Getter of the scholarship.</div>
+<div class="block">Getter of specific semester by its number</div>
 </dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getThesis()">getThesis()</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getSubjectsByType(java.lang.Integer,ru.nsu.fit.tretyakov.Gradebook.CreditType)">getSubjectsByType(Integer, Gradebook.CreditType)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
 <dd>
-<div class="block">Getter of the thesis.</div>
+<div class="block">Getter of all subjects in specific semester with specific credit type</div>
+</dd>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#getThesisGrade()">getThesisGrade()</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
+<dd>
+<div class="block">Getter of the thesis' grade.</div>
 </dd>
 <dt><a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov"><span class="typeNameLink">Gradebook</span></a> - Class in <a href="ru/nsu/fit/tretyakov/package-summary.html">ru.nsu.fit.tretyakov</a></dt>
 <dd>
@@ -168,9 +168,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Setter of the subject's grade.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#setThesis(java.lang.Integer)">setThesis(Integer)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
+<dt><span class="memberNameLink"><a href="ru/nsu/fit/tretyakov/Gradebook.html#setThesisGrade(java.lang.Integer)">setThesisGrade(Integer)</a></span> - Method in class ru.nsu.fit.tretyakov.<a href="ru/nsu/fit/tretyakov/Gradebook.html" title="class in ru.nsu.fit.tretyakov">Gradebook</a></dt>
 <dd>
-<div class="block">Setter of the thesis.</div>
+<div class="block">Setter of the thesis' grade.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>

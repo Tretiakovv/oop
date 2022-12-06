@@ -134,7 +134,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 extends java.lang.Object</pre>
 <div class="block">This class is the student's grade book. In it user can get
  information about his score, subjects, average grade point and
- his honor diploma.</div>
+ his honor diploma. User can also get list of all subjects with
+ specific credit type.</div>
 </li>
 </ul>
 </div>
@@ -189,22 +190,15 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addSubject(java.lang.Integer,java.lang.String,java.lang.String)">addSubject</a></span>&#8203;(java.lang.Integer&nbsp;semester,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addSubject(java.lang.Integer,java.lang.String,ru.nsu.fit.tretyakov.Gradebook.CreditType)">addSubject</a></span>&#8203;(java.lang.Integer&nbsp;semester,
           java.lang.String&nbsp;subject,
-          java.lang.String&nbsp;creditType)</code></th>
+          ru.nsu.fit.tretyakov.Gradebook.CreditType&nbsp;creditType)</code></th>
 <td class="colLast">
 <div class="block">This method adds a specific subject WITHOUT a value
  to the semester in grade book.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.lang.Float</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGPA()">getGPA</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Getter of the Average Grade Point.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGrade(java.lang.Integer,java.lang.String)">getGrade</a></span>&#8203;(java.lang.Integer&nbsp;semester,
         java.lang.String&nbsp;subject)</code></th>
@@ -212,25 +206,33 @@ extends java.lang.Object</pre>
 <div class="block">Getter of the subject's grade.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHonorDiploma()">getHonorDiploma</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter of the honor diploma.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getScholarShip()">getScholarShip</a></span>()</code></th>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>ru.nsu.fit.tretyakov.Gradebook.Semester</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSemester(java.lang.Integer)">getSemester</a></span>&#8203;(java.lang.Integer&nbsp;semesterNumber)</code></th>
 <td class="colLast">
-<div class="block">Getter of the scholarship.</div>
+<div class="block">Getter of specific semester by its number</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;ru.nsu.fit.tretyakov.Gradebook.Subject&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubjectsByType(java.lang.Integer,ru.nsu.fit.tretyakov.Gradebook.CreditType)">getSubjectsByType</a></span>&#8203;(java.lang.Integer&nbsp;semester,
+                 ru.nsu.fit.tretyakov.Gradebook.CreditType&nbsp;type)</code></th>
+<td class="colLast">
+<div class="block">Getter of all subjects in specific semester with specific credit type</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.Integer</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThesis()">getThesis</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThesisGrade()">getThesisGrade</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Getter of the thesis.</div>
+<div class="block">Getter of the thesis' grade.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -252,9 +254,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setThesis(java.lang.Integer)">setThesis</a></span>&#8203;(java.lang.Integer&nbsp;thesis)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setThesisGrade(java.lang.Integer)">setThesisGrade</a></span>&#8203;(java.lang.Integer&nbsp;thesis)</code></th>
 <td class="colLast">
-<div class="block">Setter of the thesis.</div>
+<div class="block">Setter of the thesis' grade.</div>
 </td>
 </tr>
 </table>
@@ -326,7 +328,7 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="addSubject(java.lang.Integer,java.lang.String,java.lang.String)">
+<a id="addSubject(java.lang.Integer,java.lang.String,ru.nsu.fit.tretyakov.Gradebook.CreditType)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -334,7 +336,7 @@ extends java.lang.Object</pre>
 <h4>addSubject</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addSubject&#8203;(java.lang.Integer&nbsp;semester,
                        java.lang.String&nbsp;subject,
-                       java.lang.String&nbsp;creditType)
+                       ru.nsu.fit.tretyakov.Gradebook.CreditType&nbsp;creditType)
                 throws java.lang.IllegalStateException</pre>
 <div class="block">This method adds a specific subject WITHOUT a value
  to the semester in grade book.</div>
@@ -391,6 +393,24 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
+<a id="getSubjectsByType(java.lang.Integer,ru.nsu.fit.tretyakov.Gradebook.CreditType)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSubjectsByType</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;ru.nsu.fit.tretyakov.Gradebook.Subject&gt;&nbsp;getSubjectsByType&#8203;(java.lang.Integer&nbsp;semester,
+                                                                                ru.nsu.fit.tretyakov.Gradebook.CreditType&nbsp;type)</pre>
+<div class="block">Getter of all subjects in specific semester with specific credit type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>semester</code> - is the required semester where user needs to find subjects</dd>
+<dd><code>type</code> - is the required credit type of subject</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>ArrayList of all subjects in current semester with passed credit type</dd>
+</dl>
+</li>
+</ul>
 <a id="printGradebook()">
 <!--   -->
 </a>
@@ -400,6 +420,22 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;printGradebook()</pre>
 <div class="block">This method prints student's grade book as table with semesters, subjects,
  credit types of all subjects and grades of these subjects.</div>
+</li>
+</ul>
+<a id="getSemester(java.lang.Integer)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSemester</h4>
+<pre class="methodSignature">public&nbsp;ru.nsu.fit.tretyakov.Gradebook.Semester&nbsp;getSemester&#8203;(java.lang.Integer&nbsp;semesterNumber)</pre>
+<div class="block">Getter of specific semester by its number</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>semesterNumber</code> - is the number of semester</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>current semester</dd>
+</dl>
 </li>
 </ul>
 <a id="getHonorDiploma()">
@@ -417,59 +453,31 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="getThesis()">
+<a id="getThesisGrade()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getThesis</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Integer&nbsp;getThesis()</pre>
-<div class="block">Getter of the thesis.</div>
+<h4>getThesisGrade</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Integer&nbsp;getThesisGrade()</pre>
+<div class="block">Getter of the thesis' grade.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>value of the thesis.</dd>
 </dl>
 </li>
 </ul>
-<a id="setThesis(java.lang.Integer)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setThesis</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setThesis&#8203;(java.lang.Integer&nbsp;thesis)</pre>
-<div class="block">Setter of the thesis.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>thesis</code> - is the required value of the thesis.</dd>
-</dl>
-</li>
-</ul>
-<a id="getScholarShip()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getScholarShip</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;getScholarShip()</pre>
-<div class="block">Getter of the scholarship.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>value of the scholarship.</dd>
-</dl>
-</li>
-</ul>
-<a id="getGPA()">
+<a id="setThesisGrade(java.lang.Integer)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getGPA</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Float&nbsp;getGPA()</pre>
-<div class="block">Getter of the Average Grade Point.</div>
+<h4>setThesisGrade</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setThesisGrade&#8203;(java.lang.Integer&nbsp;thesis)</pre>
+<div class="block">Setter of the thesis' grade.</div>
 <dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>value of the GPA.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>thesis</code> - is the required value of the thesis.</dd>
 </dl>
 </li>
 </ul>

@@ -1,13 +1,10 @@
 package ru.nsu.fit.tretyakov;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Calculator {
-    private final Deque<Double> calculatorStack;
-    private final Set<String> binaryOperators, unaryOperators;
+    private final Deque<Number> calculatorStack;
+    private final OperatorFactory operatorFactory;
     private String expression;
     private String[] subExprArray;
     private Integer curIndex;
@@ -16,13 +13,11 @@ public class Calculator {
      * Empty constructor of the class.
      */
     public Calculator() {
-
+        this.operatorFactory = new OperatorFactory();
         this.calculatorStack = new ArrayDeque<>();
         this.expression = null;
         this.subExprArray = null;
         this.curIndex = 0;
-        this.unaryOperators = initAryOperators(new String[]{"sqrt", "rad", "deg", "sin", "cos"});
-        this.binaryOperators = initAryOperators(new String[]{"+", "-", "*", "/", "pow", "log"});
     }
 
     /**
@@ -37,6 +32,10 @@ public class Calculator {
         this.curIndex = subExprArray.length;
     }
 
+    public void addOperatorsMap(Map<String, Operator> operatorMap) {
+        operatorFactory.addOperatorsMap(operatorMap);
+    }
+
     /**
      * This function handles function value by its measure unit
      *
@@ -44,21 +43,54 @@ public class Calculator {
      * @return calculated function value
      * @throws IllegalStateException if passed operand isn't correct
      */
-    private Double parseStringValue(String operand)
-            throws IllegalStateException {
 
+    private Number parseStringValue(String operand)
+            throws IllegalStateException {
         if (operand.contains("pi")) {
             var radiansNumber = operand.split("/");
             if (radiansNumber.length > 2) {
                 throw new IllegalStateException("Radian value is incorrect");
             }
-            return Math.PI / Double.parseDouble(radiansNumber[1]);
-        } else return Double.parseDouble(operand);
+            return new Number(Math.PI / Double.parseDouble(radiansNumber[1]), 0);
+        } else if (operand.contains("i")) {
+            return parseComplexValue(operand);
+        }
+        return new Number(Double.parseDouble(operand), 0);
     }
 
-    private Set<String> initAryOperators(String[] operators) {
-        return Arrays.stream(operators)
-                .collect(Collectors.toSet());
+    private Number parseComplexValue(String operand) throws IllegalStateException {
+
+        String[] complexValue = operand.split("\\+");
+        Number complexNumber;
+
+        // if our boy has only imagine part of number
+        if (complexValue.length == 1) {
+
+            String imagine = complexValue[0];
+            // if imagine part is only 'i'
+            if (imagine.length() == 1) complexNumber = new Number(0, 1);
+
+            var imagineValue = imagine.replace("i", "\0");
+            complexNumber = new Number(0, Double.parseDouble(imagineValue));
+
+        } else if (complexValue.length == 2) {
+
+            if (complexValue[0].contains("i")) {
+                throw new IllegalStateException("Real part of complex number contains i");
+            }
+
+            double real = Double.parseDouble(complexValue[0]);
+            double imagine;
+
+            if (complexValue[1].length() == 1) imagine = 1;
+            else imagine = Double.parseDouble(
+                    complexValue[1].replace("i", "\0"));
+
+            complexNumber = new Number(real, imagine);
+        } else {
+            throw new IllegalStateException("Input complex number is incorrect");
+        }
+        return complexNumber;
     }
 
     /**
@@ -70,7 +102,7 @@ public class Calculator {
      *                               contains more than one value.
      */
 
-    public Double calculate(String expression) throws IllegalStateException {
+    public Number calculate(String expression) throws IllegalStateException {
 
         if (subExprArray == null) subExprArray = expression.split(" ");
         if (curIndex == 0) curIndex = subExprArray.length;
@@ -78,35 +110,17 @@ public class Calculator {
         while (curIndex > 0) {
             String current = peek();
 
-            if (binaryOperators.contains(current) || unaryOperators.contains(current)) {
+            Operator currentOperator = operatorFactory.runOperator(current);
 
-                var fst = Objects.requireNonNull(calculatorStack.pollLast());
-
-                if (binaryOperators.contains(current)) {
-                    var snd = Objects.requireNonNull(calculatorStack.pollLast());
-                    switch (current) {
-                        case "+" -> calculatorStack.addLast(fst + snd);
-                        case "-" -> calculatorStack.addLast(fst - snd);
-                        case "*" -> calculatorStack.addLast(fst * snd);
-                        case "/" -> calculatorStack.addLast(fst / snd);
-                        case "log" -> calculatorStack.addLast(Math.log(fst) / Math.log(snd));
-                        case "pow" -> calculatorStack.addLast(Math.pow(fst, snd));
-                    }
-                } else {
-                    switch (current) {
-                        case "sqrt" -> calculatorStack.addLast(Math.sqrt(fst));
-                        case "sin" -> calculatorStack.addLast(Math.sin(fst));
-                        case "cos" -> calculatorStack.addLast(Math.cos(fst));
-                        case "deg" -> calculatorStack.addLast(Math.toRadians(fst));
-                        case "rad" -> calculatorStack.addLast(fst);
-                    }
-                }
+            if (currentOperator != null) {
+                calculatorStack.addLast(currentOperator.calculate(calculatorStack));
             } else {
                 var operand = parseStringValue(current);
                 calculatorStack.addLast(operand);
             }
             curIndex--;
         }
+
         if (calculatorStack.size() != 1) {
             throw new IllegalStateException("Input string is incorrect. Result is undetermined");
         }
@@ -122,7 +136,7 @@ public class Calculator {
      * @throws IllegalStateException if result of the expression
      *                               contains more than one value.
      */
-    public Double calculate() throws IllegalStateException {
+    public Number calculate() throws IllegalStateException {
         if (expression == null) {
             throw new IllegalStateException("Expression is null");
         }

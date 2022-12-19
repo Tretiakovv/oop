@@ -3,18 +3,40 @@ package ru.nsu.fit.tretyakov;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This is the factory-class which produces specific operator by
+ * specific token. It also can take user's factories and add them to
+ * the map of all operators.
+ */
 public class OperatorFactory {
     private final Map<String, Operator> operatorMap;
 
+    /**
+     * Constructor of the factory.
+     * It creates current map of operators and initialize it.
+     */
     public OperatorFactory() {
         operatorMap = new HashMap<>();
         initOperatorMap();
     }
 
+    /**
+     * This method adds user's map of operators.
+     *
+     * @param userMap is the required user's map of operators which
+     *                will be added to the current operators map.
+     */
     public void addOperatorsMap(Map<String, Operator> userMap) {
         operatorMap.putAll(userMap);
     }
 
+    /**
+     * Main method of the class. It runs (returns) specific operator by the
+     * string token of the operator.
+     *
+     * @param operator is the string token of the operator.
+     * @return suitable operator in the operators' map.
+     */
     public Operator runOperator(String operator) {
         return operatorMap.get(operator);
     }

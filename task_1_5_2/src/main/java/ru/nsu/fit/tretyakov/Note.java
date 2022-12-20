@@ -16,17 +16,16 @@ public class Note implements Serializable {
         this.date = new Date();
     }
 
+    public String getHeader(){
+        return this.header;
+    }
+
     public void addNote(String note) {
         this.noteLines.add(note);
     }
 
     public void addNotes(Collection<String> notes) {
         this.noteLines.addAll(notes);
-    }
-
-    public void showDate() {
-        String stringDate = date.toString();
-        System.out.printf("Date of the creating note is: %s\n", stringDate);
     }
 
     public void changeNote(String newHeader, Map<Integer,String> newLines) {
@@ -42,6 +41,7 @@ public class Note implements Serializable {
 
     public void showNote() {
 
+        System.out.printf("Date the note was created: %s\n\n", date);
         System.out.printf("==== %s ====\n\n", this.header);
 
         if (noteLines != null) {

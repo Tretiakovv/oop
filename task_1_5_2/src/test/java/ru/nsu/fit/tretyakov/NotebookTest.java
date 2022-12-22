@@ -6,11 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Map;
+import java.util.*;
 
 public class NotebookTest {
 
@@ -21,7 +17,10 @@ public class NotebookTest {
     @BeforeEach
     public void init() throws IOException {
         jsonFile = new File("note.json");
-        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        gson = new GsonBuilder()
+                .setDateFormat("yyyy")
+                .enableComplexMapKeySerialization()
+                .create();
         writer = new FileWriter(jsonFile);
     }
 
@@ -53,5 +52,13 @@ public class NotebookTest {
         gson.toJson(one, writer);
         writer.flush();
         writer.close();
+    }
+
+    @Test
+    public void simpleTest() throws IOException {
+        Notebook myNotebook = new MyNotebook(new Note("First note"));
+        myNotebook.addNote(new Note("Second note"));
+        myNotebook.addNote(new Note("Third note"));
+        myNotebook.showNotebook();
     }
 }

@@ -1,13 +1,11 @@
 package ru.nsu.fit.tretyakov;
 
-import ru.nsu.fit.tretyakov.Note;
-
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public interface Notebook {
-    public void addNote(Note note) throws FileNotFoundException;
-    public Note removeNote(Note note) throws FileNotFoundException;
-    public void showNotebook() throws FileNotFoundException;
-    public void showNotesByKeywords(Collection<String> keywords) throws FileNotFoundException;
+    void addNote(Note note) throws IOException;
+    Note removeNote(Note note) throws IOException;
+    void showNotebook() throws IOException;
+    void showNotesByKeywords(Collection<String> keywords) throws IOException;
 }

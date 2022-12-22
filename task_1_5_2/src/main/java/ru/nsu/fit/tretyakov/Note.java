@@ -1,9 +1,6 @@
 package ru.nsu.fit.tretyakov;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Note implements Serializable {
@@ -11,6 +8,10 @@ public class Note implements Serializable {
     private String header;
     private ArrayList<String> noteLines;
 
+    public Note(Date date, String header){
+        this.date = date;
+        this.header = header;
+    }
     public Note(String header) {
         this.header = header;
         this.date = new Date();

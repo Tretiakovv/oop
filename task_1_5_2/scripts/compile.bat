@@ -1,0 +1,1 @@
+javac -cp ./libraries/* -sourcepath ./src/main/java ./src/main/java/ru/nsu/fit/tretyakov/Main.java -d ./classes

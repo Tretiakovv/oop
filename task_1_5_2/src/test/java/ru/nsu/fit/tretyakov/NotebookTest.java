@@ -24,6 +24,18 @@ public class NotebookTest {
         writer = new FileWriter(jsonFile);
     }
 
+    private static Calendar calendar;
+
+    private static Date increaseDateBySecond() {
+        calendar.add(Calendar.SECOND, 1);
+        return calendar.getTime();
+    }
+
+    private static void initCalendar() {
+        calendar = Calendar.getInstance();
+        calendar.setTime(calendar.getTime());
+    }
+
     @Test
     @SuppressWarnings("unchecked")
     public void serializeNote() throws IOException, ClassNotFoundException {
@@ -56,9 +68,9 @@ public class NotebookTest {
 
     @Test
     public void simpleTest() throws IOException {
-        Notebook myNotebook = new MyNotebook(new Note("First note"));
-        myNotebook.addNote(new Note("Second note"));
-        myNotebook.addNote(new Note("Third note"));
-        myNotebook.showNotebook();
+        Notebook myNotebook = new MyNotebook();
+        myNotebook.addNote("Second note", null);
+        myNotebook.addNote("Third note", null);
+        myNotebook.showNotebook(null);
     }
 }

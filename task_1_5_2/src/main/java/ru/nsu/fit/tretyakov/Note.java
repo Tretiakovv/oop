@@ -3,52 +3,75 @@ package ru.nsu.fit.tretyakov;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * This is the class of the note, which contains note header,
+ * date of the creation of the note and note's description.
+ */
 public class Note implements Serializable {
-    protected final Date date;
+    public final Date date;
     private String header;
-    private ArrayList<String> noteLines;
+    private String body;
 
-    public Note(Date date, String header){
-        this.date = date;
-        this.header = header;
+    /**
+     * Overload of the default constructor of the Note with
+     * additional body parameter.
+     *
+     * @param header is the required header of the note
+     * @param body   is the required body of the note
+     */
+    public Note(String header, String body) {
+        this(header);
+        this.body = body;
     }
+
+    /**
+     * Default constructor of the Note with the
+     * header parameter.
+     *
+     * @param header is the required header of the note
+     */
     public Note(String header) {
         this.header = header;
         this.date = new Date();
     }
 
-    public String getHeader(){
+    /**
+     * Getter of the header of the note
+     *
+     * @return header of the note
+     */
+    public String getHeader() {
         return this.header;
     }
 
-    public void addNote(String note) {
-        this.noteLines.add(note);
+    /**
+     * Setter of the header of the note
+     *
+     * @param header is the required header of the note
+     */
+    public void setHeader(String header) {
+        this.header = header;
     }
 
-    public void addNotes(Collection<String> notes) {
-        this.noteLines.addAll(notes);
+    /**
+     * Setter of the body of the note
+     *
+     * @param body is the required body of the note
+     */
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public void changeNote(String newHeader, Map<Integer,String> newLines) {
-        this.header = newHeader;
-        changeNote(newLines);
-    }
-
-    public void changeNote(Map<Integer,String> newLines){
-        for (var lineIdx: newLines.keySet()){
-            noteLines.set(lineIdx,newLines.get(lineIdx));
-        }
-    }
-
+    /**
+     * This method shows all note information.
+     */
     public void showNote() {
 
         System.out.printf("Date the note was created: %s\n\n", date);
         System.out.printf("==== %s ====\n\n", this.header);
 
-        if (noteLines != null) {
-            for (int i = 1; i <= noteLines.size(); i++) {
-                System.out.printf("#%d %s\n", i, noteLines.get(i));
-            }
+        if (body != null) {
+            System.out.println(this.body);
         } else System.out.println("This note is empty");
     }
 }

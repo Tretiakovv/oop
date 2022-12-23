@@ -1,0 +1,1 @@
+java -classpath .\classes ru.nsu.fit.tretyakov.Main

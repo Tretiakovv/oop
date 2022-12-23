@@ -1,0 +1,1 @@
+java -cp "build/libs/DemoFat.jar;picocli-4.7.0" ru.nsu.fit.tretyakov.MyNotebook %*

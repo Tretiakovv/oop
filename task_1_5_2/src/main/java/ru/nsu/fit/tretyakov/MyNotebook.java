@@ -20,7 +20,6 @@ public class MyNotebook implements Notebook {
     private static final int EXIT_FAILURE = 1;
     private final NotebookSerializer serializer;
     private TreeMap<Date, Note> tempNotebook;
-    private static Calendar calendar;
 
     /**
      * Default constructor of the class, which
@@ -36,12 +35,11 @@ public class MyNotebook implements Notebook {
      * Main method which parses command line arguments and do specific method
      *
      * @param args is the arguments which are passed to the command line
+     * @throws IllegalStateException if any of the commands throws IllegalStateException
      */
-    public static void main(String[] args) {
-        initCalendar();
+    public static void main(String[] args) throws IllegalStateException {
         final CommandLine cmd = new CommandLine(new MyNotebook());
-        int exitCode = cmd.execute(args);
-        System.exit(exitCode);
+        cmd.execute(args);
     }
 
     /**
@@ -58,7 +56,8 @@ public class MyNotebook implements Notebook {
                     description = "Header of the note") String header,
             @Option(names = {"-b", "--body"},
                     paramLabel = "<body>",
-                    description = "Main body of the notes") String body) {
+                    description = "Main body of the notes",
+                    defaultValue = Option.NULL_VALUE) String body) {
         Note tmpNote = new Note(header, body);
         tempNotebook = pullData();
         tempNotebook.put(tmpNote.date, tmpNote);
@@ -70,12 +69,14 @@ public class MyNotebook implements Notebook {
      *
      * @param header is the required header of the note
      * @return removed note from the notebook
+     * @throws IllegalStateException if note with required header isn't in notebook
      */
     @Command(name = "rm", description = "Remove note by its header", mixinStandardHelpOptions = true)
     @Override
     public Note removeNote(
             @Parameters(paramLabel = "<header>",
-                    description = "Header of the note") String header) {
+                    description = "Header of the note") String header)
+            throws IllegalStateException {
         tempNotebook = pullData();
         if (!tempNotebook.isEmpty()) {
             Note removedNote = searchNoteByHeader(header);
@@ -85,12 +86,12 @@ public class MyNotebook implements Notebook {
                 System.out.println("Removed note:\n");
                 removedNote.showNote();
                 return removedNote;
-            } else printErrorMessage("This note isn't contained" +
+            } else throw new IllegalStateException("This note isn't contained" +
                     "in the notebook");
         } else {
-            printErrorMessage("Notebook is empty");
+            System.out.println("Notebook is empty");
+            return null;
         }
-        return null;
     }
 
     /**
@@ -99,6 +100,7 @@ public class MyNotebook implements Notebook {
      *
      * @param keywords is a specific collection of keywords
      *                 for which the notebook will be displayed
+     * @throws IllegalStateException if required keywords set didn't match any notes
      */
     @Command(name = "show", description = "Show all notes in the notebook" +
             " which is sorted by time of creation", mixinStandardHelpOptions = true)
@@ -106,11 +108,13 @@ public class MyNotebook implements Notebook {
     public void showNotebook(
             @Parameters(paramLabel = "keywords set", description = "Keywords that will be" +
                     "contained in the result set")
-            Collection<String> keywords) {
+            Collection<String> keywords)
+            throws IllegalStateException {
 
         tempNotebook = pullData();
         if (tempNotebook.isEmpty()) {
-            printErrorMessage("The notebook is empty");
+            System.out.println("The notebook is empty");
+            return;
         }
 
         if (keywords == null) {
@@ -133,7 +137,7 @@ public class MyNotebook implements Notebook {
                     note.showNote();
                 }
             } else {
-                printErrorMessage("None of the notes are matched keywords");
+                throw new IllegalStateException("None of the notes are matched keywords");
             }
         }
     }
@@ -146,6 +150,7 @@ public class MyNotebook implements Notebook {
      *                  by which this note will be founded
      * @param newHeader is the new header of the changing note
      * @param body      is the optional body of the new note
+     * @throws IllegalStateException if note with required header isn't in notebook
      */
     @Command(name = "edit", description = "Edit of the current note", mixinStandardHelpOptions = true)
     @Override
@@ -156,13 +161,14 @@ public class MyNotebook implements Notebook {
                     description = "New header of the note") String newHeader,
             @Option(names = {"-b", "--body"},
                     description = "Body of the note",
-                    defaultValue = Option.NULL_VALUE) String body) {
+                    defaultValue = Option.NULL_VALUE) String body)
+            throws IllegalStateException {
 
         tempNotebook = pullData();
         Note newNode = removeNote(oldHeader);
 
         if (newNode == null) {
-            printErrorMessage("This note isn't contained" +
+            throw new IllegalStateException("This note isn't contained" +
                     " in the notebook");
         } else {
             newNode.setHeader(newHeader);
@@ -171,16 +177,6 @@ public class MyNotebook implements Notebook {
             tempNotebook.put(newNode.date, newNode);
             pushData(tempNotebook);
         }
-    }
-
-    private static void initCalendar(){
-        calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-    }
-
-    private void printErrorMessage(String message) {
-        System.out.println(message);
-        System.exit(EXIT_FAILURE);
     }
 
     private Note searchNoteByHeader(String header) {

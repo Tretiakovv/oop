@@ -21,8 +21,9 @@ public interface Notebook {
      *
      * @param header is the required header of the note
      * @return removed note from the notebook
+     * @throws IllegalStateException if note with required header isn't in notebook
      */
-    Note removeNote(String header);
+    Note removeNote(String header) throws IllegalStateException;
 
     /**
      * This method shows all notes in the notebook or shows all notes
@@ -30,8 +31,9 @@ public interface Notebook {
      *
      * @param keywords is a specific collection of keywords
      *                 for which the notebook will be displayed
+     * @throws IllegalStateException if required keywords set didn't match any notes
      */
-    void showNotebook(Collection<String> keywords);
+    void showNotebook(Collection<String> keywords) throws IllegalStateException;
 
     /**
      * This method changing existing note in the notebook by its header.
@@ -41,6 +43,7 @@ public interface Notebook {
      *                  by which this note will be founded
      * @param newHeader is the new header of the changing note
      * @param body      is the optional body of the new note
+     * @throws IllegalStateException if note with required header isn't in notebook
      */
-    void editNote(String oldHeader, String newHeader, String body);
+    void editNote(String oldHeader, String newHeader, String body) throws IllegalStateException;
 }

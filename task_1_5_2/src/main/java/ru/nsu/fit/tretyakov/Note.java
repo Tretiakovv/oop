@@ -32,6 +32,7 @@ public class Note implements Serializable {
      */
     public Note(String header) {
         this.header = header;
+        this.body = null;
         this.date = new Date();
     }
 
@@ -54,6 +55,15 @@ public class Note implements Serializable {
     }
 
     /**
+     * Getter of the body of the note
+     *
+     * @return body of the note
+     */
+    public String getBody() {
+        return this.body;
+    }
+
+    /**
      * Setter of the body of the note
      *
      * @param body is the required body of the note
@@ -70,8 +80,7 @@ public class Note implements Serializable {
         System.out.printf("Date the note was created: %s\n\n", date);
         System.out.printf("==== %s ====\n\n", this.header);
 
-        if (body != null) {
-            System.out.println(this.body);
-        } else System.out.println("This note is empty");
+        System.out.println(Objects.requireNonNullElse(
+                body, "This note is empty"));
     }
 }

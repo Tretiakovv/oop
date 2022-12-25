@@ -1,9 +1,9 @@
-package ru.nsu.fit.tretyakov.testOperators;
+package ru.nsu.fit.tretyakov.test_operators;
+
+import java.util.Deque;
 
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
-
-import java.util.Deque;
 
 /**
  * This class calculates subtraction value of three operands.

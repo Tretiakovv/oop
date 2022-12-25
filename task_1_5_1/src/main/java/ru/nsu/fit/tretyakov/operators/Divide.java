@@ -1,12 +1,12 @@
 package ru.nsu.fit.tretyakov.operators;
 
+import java.util.Deque;
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
 
-import java.util.Deque;
-
 /**
- * This class computes the result of dividing one complex number by second.
+ * This class computes the result of dividing one
+ * complex number by second.
  */
 public class Divide implements Operator {
 

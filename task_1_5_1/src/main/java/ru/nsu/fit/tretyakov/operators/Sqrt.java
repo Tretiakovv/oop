@@ -1,9 +1,9 @@
 package ru.nsu.fit.tretyakov.operators;
 
+import java.util.Deque;
+
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
-
-import java.util.Deque;
 
 /**
  * This class takes the square root of the complex number.

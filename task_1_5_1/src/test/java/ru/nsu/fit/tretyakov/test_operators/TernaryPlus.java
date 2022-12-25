@@ -1,16 +1,16 @@
-package ru.nsu.fit.tretyakov.testOperators;
+package ru.nsu.fit.tretyakov.test_operators;
+
+import java.util.Deque;
 
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
 
-import java.util.Deque;
-
 /**
- * This class calculates multiply value of three operands.
+ * This class calculates adding value of three operands.
  */
-public class TernaryMultiply implements Operator {
+public class TernaryPlus implements Operator {
 
-    public static final String token = "***";
+    public static final String token = "+++";
 
     @Override
     public String getToken() {
@@ -18,16 +18,16 @@ public class TernaryMultiply implements Operator {
     }
 
     /**
-     * This function calculates result of dividing three numbers.
+     * This function calculates result of adding of three operands.
      *
      * @param expressionStack is the stack of all operands in which
      *                        this function will get an operand.
-     * @return result of dividing three numbers.
+     * @return result of adding three numbers
      */
     @Override
     public Number calculate(Deque<Number> expressionStack) {
         Number[] operands = getValuesFromStack(3, expressionStack);
-        return new Number(operands[0].real() * operands[1].real()
-                * operands[2].real(), 0);
+        return new Number(operands[0].real() + operands[1].real()
+                + operands[2].real(), 0);
     }
 }

@@ -1,16 +1,15 @@
 package ru.nsu.fit.tretyakov.operators;
 
+import java.util.Deque;
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
-
-import java.util.Deque;
 
 /**
  * Cosine of the complex value of the number.
  */
 public class Cosine implements Operator {
 
-    public final static String token = "cos";
+    public static final String token = "cos";
 
     @Override
     public String getToken() {

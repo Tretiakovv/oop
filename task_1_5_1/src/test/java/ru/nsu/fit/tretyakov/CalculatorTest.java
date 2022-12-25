@@ -1,14 +1,17 @@
 package ru.nsu.fit.tretyakov;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import ru.nsu.fit.tretyakov.testOperators.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import ru.nsu.fit.tretyakov.test_operators.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for the Calculator business logic.
+ */
 public class CalculatorTest {
 
     @ParameterizedTest

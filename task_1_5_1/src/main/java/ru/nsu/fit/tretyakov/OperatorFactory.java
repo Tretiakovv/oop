@@ -25,33 +25,34 @@ public class OperatorFactory {
     /**
      * This method adds user's list of operators.
      *
-     * @param userMap is the required user's list of operators which
-     *                will be added to the current operators list.
+     * @param userList is the required user's list of operators which
+     *                 will be added to the current operators list.
      */
     public void addOperatorsList(List<Operator> userList) {
         operatorList.addAll(userList);
     }
 
     /**
-     * Main method of the class. It runs (returns) specific operator by the
-     * string token of the operator.
+     * Main method of the class. It runs (returns) specific operator
+     * by the string token of the operator.
      *
-     * @param operator is the string token of the operator.
+     * @param token is the string token of the operator.
      * @return suitable operator in the operators' list.
      */
     public Operator runOperator(String token) {
-        for (var operator: operatorList){
-            if (operator.getToken().equals(token)){
+        for (var operator : operatorList) {
+            if (operator.getToken().equals(token)) {
                 return operator;
             }
-        } return null;
+        }
+        return null;
     }
 
     private void initOperatorsList() {
         operatorList.add(new Plus());
         operatorList.add(new Minus());
         operatorList.add(new Multiply());
-        operatorList.add( new Divide());
+        operatorList.add(new Divide());
         operatorList.add(new Sinus());
         operatorList.add(new Log());
         operatorList.add(new Sqrt());

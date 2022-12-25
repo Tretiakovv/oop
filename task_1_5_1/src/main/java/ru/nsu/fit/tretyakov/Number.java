@@ -29,7 +29,7 @@ public class Number {
     }
 
     /**
-     * This function handles function value by its measure unit
+     * This function handles function value by its measure unit.
      *
      * @param operand is the current operand of the expression
      * @throws IllegalStateException if passed operand isn't correct
@@ -75,9 +75,12 @@ public class Number {
             double real = Double.parseDouble(complexValue[0]);
             double imagine;
 
-            if (complexValue[1].length() == 1) imagine = 1;
-            else imagine = Double.parseDouble(
-                    complexValue[1].replace("i", "\0"));
+            if (complexValue[1].length() == 1) {
+                imagine = 1;
+            } else {
+                imagine = Double.parseDouble(
+                        complexValue[1].replace("i", "\0"));
+            }
 
             this.real = real;
             this.imag = imagine;
@@ -130,7 +133,7 @@ public class Number {
 
     /**
      * This function calculates hyperbolic cosine (function that helps
-     * to calculate complex cosine of the number)
+     * to calculate complex cosine of the number).
      *
      * @param theta is the current angle between point on the complex striation
      *              and the OX axis.
@@ -142,7 +145,7 @@ public class Number {
 
     /**
      * This function calculates hyperbolic sinus (function that helps
-     * to calculate complex sinus of the number)
+     * to calculate complex sinus of the number).
      *
      * @param theta is the current angle between point on the complex striation
      *              and the OX axis.

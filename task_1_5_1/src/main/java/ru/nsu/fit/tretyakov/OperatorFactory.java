@@ -1,9 +1,9 @@
 package ru.nsu.fit.tretyakov;
 
-import ru.nsu.fit.tretyakov.operators.*;
-
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.fit.tretyakov.operators.*;
+
 
 /**
  * This is the factory-class which produces specific operator by

@@ -1,7 +1,14 @@
 package ru.nsu.fit.tretyakov;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
 
+/**
+ * Main class of the calculator. Parses the user's
+ * expression and calculates it. This calculator can
+ * parse complex expressions and real expressions.
+ */
 public class Calculator {
     private final Deque<Number> calculatorStack;
     private final OperatorFactory operatorFactory;
@@ -33,8 +40,12 @@ public class Calculator {
 
     public Number calculate(String expression) throws IllegalStateException {
 
-        if (subExprArray == null) subExprArray = expression.split(" ");
-        if (curIndex == 0) curIndex = subExprArray.length;
+        if (subExprArray == null) {
+            subExprArray = expression.split(" ");
+        }
+        if (curIndex == 0) {
+            curIndex = subExprArray.length;
+        }
 
         while (curIndex > 0) {
             String current = peek();
@@ -58,7 +69,7 @@ public class Calculator {
     }
 
     /**
-     * This method returns a subexpression at the next index WITHOUT shifting to the next index
+     * This method returns a subexpression at the next index WITHOUT shifting to the next index.
      *
      * @return n-th subexpression of passed expression
      * @throws ArrayIndexOutOfBoundsException if current index is out of bounds

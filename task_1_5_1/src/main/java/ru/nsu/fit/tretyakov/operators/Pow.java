@@ -1,9 +1,9 @@
 package ru.nsu.fit.tretyakov.operators;
 
+import java.util.Deque;
+
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
-
-import java.util.Deque;
 
 /**
  * This class calculates the result of raising one number
@@ -24,8 +24,7 @@ public class Pow implements Operator {
      *
      * @param expressionStack is the stack of all operands in which
      *                        this function will get an operand.
-     * @return the result of raising one number
-     * to the power of another.
+     * @return the result of raising one number to the power of another.
      */
     @Override
     public Number calculate(Deque<Number> expressionStack) {

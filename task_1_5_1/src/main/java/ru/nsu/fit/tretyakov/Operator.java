@@ -24,9 +24,16 @@ public interface Operator {
      */
     Number calculate(Deque<Number> expressionStack);
 
-    default Number[] getValuesFromStack(int ARITY, Deque<Number> expressionStack) {
-        Number[] operandsArray = new Number[ARITY];
-        for (int i = 0; i < ARITY; i++) {
+    /**
+     * This method gets operands from the stack arity times.
+     *
+     * @param arity           is the number of taken operands from the stack
+     * @param expressionStack is the calculator's expression stack
+     * @return list of taken operands from the stack
+     */
+    default Number[] getValuesFromStack(int arity, Deque<Number> expressionStack) {
+        Number[] operandsArray = new Number[arity];
+        for (int i = 0; i < arity; i++) {
             operandsArray[i] = expressionStack.pollLast();
         }
         return operandsArray;

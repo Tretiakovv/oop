@@ -1,9 +1,9 @@
 package ru.nsu.fit.tretyakov.operators;
 
+import java.util.Deque;
+
 import ru.nsu.fit.tretyakov.Number;
 import ru.nsu.fit.tretyakov.Operator;
-
-import java.util.Deque;
 
 /**
  * This class calculates the result of taking the logarithm

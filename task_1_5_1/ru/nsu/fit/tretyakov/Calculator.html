@@ -110,9 +110,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsList(java.util.List)" class="member-name-link">addOperatorsList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorList)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsList(ru.nsu.fit.tretyakov.Operator...)" class="member-name-link">addOperatorsList</a><wbr>(<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>...&nbsp;operators)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method adds user's custom operators to the default operators list.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.lang.String)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Main method to parse and calculate string expression.</div>
@@ -150,15 +152,21 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addOperatorsList(java.util.List)">
+<section class="detail" id="addOperatorsList(ru.nsu.fit.tretyakov.Operator...)">
 <h3>addOperatorsList</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorList)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsList</span><wbr><span class="parameters">(<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>...&nbsp;operators)</span></div>
+<div class="block">This method adds user's custom operators to the default operators list.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operators</code> - is the operators of the variable length which
+                  will be added to the default operators list</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="calculate(java.lang.String)">
 <h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</span>
                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></span></div>
 <div class="block">Main method to parse and calculate string expression.</div>
 <dl class="notes">

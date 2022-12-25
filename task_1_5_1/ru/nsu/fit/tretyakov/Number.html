@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -90,9 +91,13 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(double,double)" class="member-name-link">Number</a><wbr>(double&nbsp;u,
- double&nbsp;v)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Number</a>()</code></div>
 <div class="col-last even-row-color">
+<div class="block">Default constructor of the number.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(double,double)" class="member-name-link">Number</a><wbr>(double&nbsp;u,
+ double&nbsp;v)</code></div>
+<div class="col-last odd-row-color">
 <div class="block">Constructor of the number.</div>
 </div>
 </div>
@@ -116,19 +121,36 @@ loadScripts(document, 'script');</script>
  complex number.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#imag()" class="member-name-link">imag</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cosh(double)" class="member-name-link">cosh</a><wbr>(double&nbsp;theta)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Getter of the imagine part of the number.</div>
+<div class="block">This function calculates hyperbolic cosine (function that helps
+ to calculate complex cosine of the number)</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#mod()" class="member-name-link">mod</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#imag()" class="member-name-link">imag</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Getter of the imagine part of the number.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#mod()" class="member-name-link">mod</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This function calculates the modulus of the complex number.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parseNumber(java.lang.String)" class="member-name-link">parseNumber</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operand)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This function handles function value by its measure unit</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#real()" class="member-name-link">real</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Getter of the real part of the number.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sinh(double)" class="member-name-link">sinh</a><wbr>(double&nbsp;theta)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This function calculates hyperbolic sinus (function that helps
+ to calculate complex sinus of the number)</div>
 </div>
 </div>
 </div>
@@ -161,6 +183,13 @@ loadScripts(document, 'script');</script>
 </dl>
 </section>
 </li>
+<li>
+<section class="detail" id="&lt;init&gt;()">
+<h3>Number</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Number</span>()</div>
+<div class="block">Default constructor of the number.</div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -169,6 +198,20 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="parseNumber(java.lang.String)">
+<h3>parseNumber</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></span>&nbsp;<span class="element-name">parseNumber</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operand)</span>
+                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></span></div>
+<div class="block">This function handles function value by its measure unit</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operand</code> - is the current operand of the expression</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if passed operand isn't correct</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="real()">
 <h3>real</h3>
@@ -211,6 +254,36 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the modulus of the complex number</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="cosh(double)">
+<h3>cosh</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">cosh</span><wbr><span class="parameters">(double&nbsp;theta)</span></div>
+<div class="block">This function calculates hyperbolic cosine (function that helps
+ to calculate complex cosine of the number)</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>theta</code> - is the current angle between point on the complex striation
+              and the OX axis.</dd>
+<dt>Returns:</dt>
+<dd>the hyperbolic cosine of the number</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sinh(double)">
+<h3>sinh</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">sinh</span><wbr><span class="parameters">(double&nbsp;theta)</span></div>
+<div class="block">This function calculates hyperbolic sinus (function that helps
+ to calculate complex sinus of the number)</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>theta</code> - is the current angle between point on the complex striation
+              and the OX axis.</dd>
+<dt>Returns:</dt>
+<dd>the hyperbolic sinus of the number</dd>
 </dl>
 </section>
 </li>

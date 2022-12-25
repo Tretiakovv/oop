@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -78,7 +79,7 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">This is the factory-class which produces specific operator by
  specific token. It also can take user's factories and add them to
- the map of all operators.</div>
+ the list of all operators.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,12 +110,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsMap(java.util.Map)" class="member-name-link">addOperatorsMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;userMap)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsList(java.util.List)" class="member-name-link">addOperatorsList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;userList)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method adds user's map of operators.</div>
+<div class="block">This method adds user's list of operators.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runOperator(java.lang.String)" class="member-name-link">runOperator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runOperator(java.lang.String)" class="member-name-link">runOperator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Main method of the class.</div>
 </div>
@@ -140,7 +141,7 @@ loadScripts(document, 'script');</script>
 <h3>OperatorFactory</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">OperatorFactory</span>()</div>
 <div class="block">Constructor of the factory.
- It creates current map of operators and initialize it.</div>
+ It creates current list of operators and initialize it.</div>
 </section>
 </li>
 </ul>
@@ -152,28 +153,28 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addOperatorsMap(java.util.Map)">
-<h3>addOperatorsMap</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;userMap)</span></div>
-<div class="block">This method adds user's map of operators.</div>
+<section class="detail" id="addOperatorsList(java.util.List)">
+<h3>addOperatorsList</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;userList)</span></div>
+<div class="block">This method adds user's list of operators.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>userMap</code> - is the required user's map of operators which
-                will be added to the current operators map.</dd>
+<dd><code>userList</code> - is the required user's list of operators which
+                 will be added to the current operators list.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="runOperator(java.lang.String)">
 <h3>runOperator</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a></span>&nbsp;<span class="element-name">runOperator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</span></div>
-<div class="block">Main method of the class. It runs (returns) specific operator by the
- string token of the operator.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a></span>&nbsp;<span class="element-name">runOperator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span></div>
+<div class="block">Main method of the class. It runs (returns) specific operator
+ by the string token of the operator.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>operator</code> - is the string token of the operator.</dd>
+<dd><code>token</code> - is the string token of the operator.</dd>
 <dt>Returns:</dt>
-<dd>suitable operator in the operators' map.</dd>
+<dd>suitable operator in the operators' list.</dd>
 </dl>
 </section>
 </li>

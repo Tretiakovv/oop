@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -91,10 +92,6 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Empty constructor of the class.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Calculator</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
-<div class="col-last odd-row-color">
-<div class="block">Overload of constructor of the class with string parameter.</div>
-</div>
 </div>
 </section>
 </li>
@@ -110,16 +107,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsMap(java.util.Map)" class="member-name-link">addOperatorsMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorMap)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addOperatorsList(java.util.List)" class="member-name-link">addOperatorsList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorList)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate()" class="member-name-link">calculate</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.lang.String)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Overload of main method with no parameters.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculate(java.lang.String)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Main method to parse and calculate string expression.</div>
 </div>
 </div>
@@ -146,17 +138,6 @@ loadScripts(document, 'script');</script>
 <div class="block">Empty constructor of the class.</div>
 </section>
 </li>
-<li>
-<section class="detail" id="&lt;init&gt;(java.lang.String)">
-<h3>Calculator</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Calculator</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression)</span></div>
-<div class="block">Overload of constructor of the class with string parameter.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>expression</code> - is the required expression to be calculated</dd>
-</dl>
-</section>
-</li>
 </ul>
 </section>
 </li>
@@ -166,9 +147,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addOperatorsMap(java.util.Map)">
-<h3>addOperatorsMap</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorMap)</span></div>
+<section class="detail" id="addOperatorsList(java.util.List)">
+<h3>addOperatorsList</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addOperatorsList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Operator.html" title="interface in ru.nsu.fit.tretyakov">Operator</a>&gt;&nbsp;operatorList)</span></div>
 </section>
 </li>
 <li>
@@ -180,21 +161,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>expression</code> - is the passed expression which will be calculated</dd>
-<dt>Returns:</dt>
-<dd>the float value of calculated expression</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - if result of the expression
-                               contains more than one value.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="calculate()">
-<h3>calculate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Number.html" title="class in ru.nsu.fit.tretyakov">Number</a></span>&nbsp;<span class="element-name">calculate</span>()
-                 throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></span></div>
-<div class="block">Overload of main method with no parameters.</div>
-<dl class="notes">
 <dt>Returns:</dt>
 <dd>the float value of calculated expression</dd>
 <dt>Throws:</dt>

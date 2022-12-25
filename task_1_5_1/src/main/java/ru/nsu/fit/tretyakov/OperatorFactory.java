@@ -3,6 +3,7 @@ package ru.nsu.fit.tretyakov;
 import java.util.ArrayList;
 import java.util.List;
 import ru.nsu.fit.tretyakov.operators.*;
+import ru.nsu.fit.tretyakov.operators.Number;
 
 
 /**
@@ -45,7 +46,7 @@ public class OperatorFactory {
                 return operator;
             }
         }
-        return null;
+        return new Number(token);
     }
 
     private void initOperatorsList() {
@@ -57,7 +58,6 @@ public class OperatorFactory {
         operatorList.add(new Log());
         operatorList.add(new Sqrt());
         operatorList.add(new Pow());
-        operatorList.add(new Rad());
         operatorList.add(new Rad());
     }
 }

@@ -1,8 +1,8 @@
 package ru.nsu.fit.tretyakov;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
+import ru.nsu.fit.tretyakov.operators.Number;
+
+import java.util.*;
 
 /**
  * Main class of the calculator. Parses the user's
@@ -25,8 +25,15 @@ public class Calculator {
         this.curIndex = 0;
     }
 
-    public void addOperatorsList(List<Operator> operatorList) {
-        operatorFactory.addOperatorsList(operatorList);
+    /**
+     * This method adds user's custom operators to the default operators list.
+     *
+     * @param operators is the operators of the variable length which
+     *                  will be added to the default operators list
+     */
+    public void addOperatorsList(Operator... operators) {
+        List<Operator> userOperators = Arrays.stream(operators).toList();
+        operatorFactory.addOperatorsList(userOperators);
     }
 
     /**
@@ -49,14 +56,8 @@ public class Calculator {
 
         while (curIndex > 0) {
             String current = peek();
-
             Operator currentOperator = operatorFactory.runOperator(current);
-
-            if (currentOperator != null) {
-                calculatorStack.addLast(currentOperator.calculate(calculatorStack));
-            } else {
-                calculatorStack.addLast(new Number().parseNumber(current));
-            }
+            calculatorStack.addLast(currentOperator.calculate(calculatorStack));
             curIndex--;
         }
 

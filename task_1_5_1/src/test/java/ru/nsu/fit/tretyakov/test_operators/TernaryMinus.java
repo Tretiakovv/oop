@@ -2,7 +2,7 @@ package ru.nsu.fit.tretyakov.test_operators;
 
 import java.util.Deque;
 
-import ru.nsu.fit.tretyakov.Number;
+import ru.nsu.fit.tretyakov.operators.Number;
 import ru.nsu.fit.tretyakov.Operator;
 
 /**

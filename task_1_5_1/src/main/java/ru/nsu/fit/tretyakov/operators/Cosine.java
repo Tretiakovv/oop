@@ -1,7 +1,7 @@
 package ru.nsu.fit.tretyakov.operators;
 
 import java.util.Deque;
-import ru.nsu.fit.tretyakov.Number;
+
 import ru.nsu.fit.tretyakov.Operator;
 
 /**

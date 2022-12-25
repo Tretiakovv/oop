@@ -1,10 +1,8 @@
 package ru.nsu.fit.tretyakov;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import ru.nsu.fit.tretyakov.operators.Number;
 import ru.nsu.fit.tretyakov.test_operators.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,12 +34,8 @@ public class CalculatorTest {
     public void addNewOperatorsTest(String expression, double result) {
 
         Calculator calculator = new Calculator();
-
-        List<Operator> operatorList = new ArrayList<>();
-        operatorList.add(new TernaryPlus());
-        operatorList.add(new TernaryMinus());
-        operatorList.add(new TernaryMultiply());
-        calculator.addOperatorsList(operatorList);
+        calculator.addOperatorsList(new TernaryPlus(),
+                new TernaryMinus(), new TernaryMultiply());
 
         assertEquals(calculator.calculate(expression).real(), result);
     }

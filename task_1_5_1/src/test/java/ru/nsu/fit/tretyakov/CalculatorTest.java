@@ -40,7 +40,7 @@ public class CalculatorTest {
         operatorList.add(new TernaryMultiply());
         calculator.addOperatorsList(operatorList);
 
-        assertEquals(calculator.calculate(expression).real(),result);
+        assertEquals(calculator.calculate(expression).real(), result);
     }
 
     @ParameterizedTest
@@ -51,11 +51,11 @@ public class CalculatorTest {
             "* 2 2+3i, 4, 6",
             "/ 2 2+i, 0.7999999999999998, -0.3999999999999999"
     })
-    public void complexNumbersTest(String expression, double real, double image){
+    public void complexNumbersTest(String expression, double real, double image) {
         Calculator calculator = new Calculator();
         Number complexNumber = calculator.calculate(expression);
-        assertEquals(complexNumber.real(),real);
-        assertEquals(complexNumber.imag(),image);
+        assertEquals(complexNumber.real(), real);
+        assertEquals(complexNumber.imag(), image);
     }
 
 }

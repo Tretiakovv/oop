@@ -29,6 +29,6 @@ public class Cosine implements Operator {
         Number[] complexOperands = getValuesFromStack(2, expressionStack);
         Number fst = complexOperands[0];
         return new Number(fst.sinh(fst.imag()) * Math.cos(fst.real()),
-                (-1)*fst.sinh(fst.imag()) * Math.sin(fst.real()));
+                (-1) * fst.sinh(fst.imag()) * Math.sin(fst.real()));
     }
 }

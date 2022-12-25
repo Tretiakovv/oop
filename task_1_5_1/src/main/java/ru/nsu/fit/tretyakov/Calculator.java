@@ -5,7 +5,6 @@ import java.util.*;
 public class Calculator {
     private final Deque<Number> calculatorStack;
     private final OperatorFactory operatorFactory;
-    private String expression;
     private String[] subExprArray;
     private Integer curIndex;
 
@@ -15,7 +14,6 @@ public class Calculator {
     public Calculator() {
         this.operatorFactory = new OperatorFactory();
         this.calculatorStack = new ArrayDeque<>();
-        this.expression = null;
         this.subExprArray = null;
         this.curIndex = 0;
     }

@@ -6,8 +6,8 @@ package ru.nsu.fit.tretyakov;
  * and allows user to make some real and operations above this number.
  */
 public class Number {
-    private final double imag;
-    private final double real;
+    private double imag;
+    private double real;
 
     /**
      * Constructor of the number. Requires real and complex
@@ -19,6 +19,72 @@ public class Number {
     public Number(double u, double v) {
         real = u;
         imag = v;
+    }
+
+    /**
+     * Default constructor of the number.
+     */
+    public Number() {
+        this.real = this.imag = 0;
+    }
+
+    /**
+     * This function handles function value by its measure unit
+     *
+     * @param operand is the current operand of the expression
+     * @throws IllegalStateException if passed operand isn't correct
+     */
+    public Number parseNumber(String operand) throws IllegalStateException {
+        if (operand.contains("pi")) {
+            var radiansNumber = operand.split("/");
+            if (radiansNumber.length > 2) {
+                throw new IllegalStateException("Radian value is incorrect");
+            }
+            this.real = Math.PI / Double.parseDouble(radiansNumber[1]);
+            return this;
+        } else if (operand.contains("i")) {
+            return parseComplexValue(operand);
+        }
+        this.real = Double.parseDouble(operand);
+        return this;
+    }
+
+    private Number parseComplexValue(String operand) throws IllegalStateException {
+
+        String[] complexValue = operand.split("\\+");
+
+        // if our boy has only imagine part of number
+        if (complexValue.length == 1) {
+
+            String imagine = complexValue[0];
+            // if imagine part is only 'i'
+            if (imagine.length() == 1) {
+                this.imag = 1;
+                return this;
+            }
+
+            var imagineValue = imagine.replace("i", "\0");
+            this.imag = Double.parseDouble(imagineValue);
+
+        } else if (complexValue.length == 2) {
+
+            if (complexValue[0].contains("i")) {
+                throw new IllegalStateException("Real part of complex number contains i");
+            }
+
+            double real = Double.parseDouble(complexValue[0]);
+            double imagine;
+
+            if (complexValue[1].length() == 1) imagine = 1;
+            else imagine = Double.parseDouble(
+                    complexValue[1].replace("i", "\0"));
+
+            this.real = real;
+            this.imag = imagine;
+        } else {
+            throw new IllegalStateException("Input complex number is incorrect");
+        }
+        return this;
     }
 
     /**
@@ -70,7 +136,7 @@ public class Number {
      *              and the OX axis.
      * @return the hyperbolic cosine of the number
      */
-    double cosh(double theta) {
+    public double cosh(double theta) {
         return (Math.exp(theta) + Math.exp(-theta)) / 2;
     }
 
@@ -82,7 +148,7 @@ public class Number {
      *              and the OX axis.
      * @return the hyperbolic sinus of the number
      */
-    double sinh(double theta) {
+    public double sinh(double theta) {
         return (Math.exp(theta) - Math.exp(-theta)) / 2;
     }
 }

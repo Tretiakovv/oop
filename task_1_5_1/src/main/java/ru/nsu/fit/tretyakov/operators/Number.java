@@ -1,11 +1,16 @@
-package ru.nsu.fit.tretyakov;
+package ru.nsu.fit.tretyakov.operators;
+
+import ru.nsu.fit.tretyakov.Operator;
+
+import java.util.Deque;
 
 /**
  * This class is the boxing of the complex number.
  * It contains imagine and real parts of the complex number
  * and allows user to make some real and operations above this number.
  */
-public class Number {
+public class Number implements Operator {
+    public String token;
     private double imag;
     private double real;
 
@@ -19,6 +24,17 @@ public class Number {
     public Number(double u, double v) {
         real = u;
         imag = v;
+    }
+
+    /**
+     * Constructor of the number with the string representation of it.
+     *
+     * @param token is the string representation
+     *              of the complex number
+     */
+    public Number(String token) {
+        this();
+        this.token = token;
     }
 
     /**
@@ -153,5 +169,16 @@ public class Number {
      */
     public double sinh(double theta) {
         return (Math.exp(theta) - Math.exp(-theta)) / 2;
+    }
+
+    @Override
+    public String getToken() {
+        return this.token;
+    }
+
+    @Override
+    public Number calculate(Deque<Number> expressionStack) {
+        parseNumber(this.token);
+        return this;
     }
 }

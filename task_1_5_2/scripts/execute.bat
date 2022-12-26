@@ -1,1 +1,1 @@
-java -classpath .\classes ru.nsu.fit.tretyakov.MyNotebook
+java -classpath .\classes ru.nsu.fit.tretyakov.Main

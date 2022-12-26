@@ -1,10 +1,12 @@
 package ru.nsu.fit.tretyakov;
 
 import picocli.CommandLine;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 import picocli.CommandLine.Command;
+import ru.nsu.fit.tretyakov.subcommands.Add;
+import ru.nsu.fit.tretyakov.subcommands.Edit;
+import ru.nsu.fit.tretyakov.subcommands.Remove;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -12,174 +14,29 @@ import java.util.*;
  * user to add, edit, delete notes and show all notebook
  * by specific keywords
  */
-@Command(name = "notebook", mixinStandardHelpOptions = true,
+@Command(name = "notebook",
+        mixinStandardHelpOptions = true,
         description = "Notebook can add new notes, edit old notes," +
                 " delete notes and show notes by it's headers keywords")
-public class MyNotebook implements Notebook {
-
-    private static final int EXIT_FAILURE = 1;
-    private final NotebookSerializer serializer;
-    private TreeMap<Date, Note> tempNotebook;
+public class MyNotebook {
 
     /**
-     * Default constructor of the class, which
-     * initializes NotebookSerializer and pulled data from
-     * the external json file
+     * Static serializer of the notebook.
+     */
+    public static NotebookSerializer serializer;
+
+    protected TreeMap<Date, Note> tempNotebook;
+
+    /**
+     * Default constructor with the
+     * string filePath parameter.
      */
     public MyNotebook() {
         serializer = new NotebookSerializer();
         tempNotebook = pullData();
     }
 
-    /**
-     * Main method which parses command line arguments and do specific method
-     *
-     * @param args is the arguments which are passed to the command line
-     * @throws IllegalStateException if any of the commands throws IllegalStateException
-     */
-    public static void main(String[] args) throws IllegalStateException {
-        final CommandLine cmd = new CommandLine(new MyNotebook());
-        cmd.execute(args);
-    }
-
-    /**
-     * This method adds specific note to the notebook
-     * with passed header and body parameters.
-     *
-     * @param header is the required header of the new note
-     * @param body   is the optional body of the new note
-     */
-    @Command(name = "add", description = "Add a new note to the notebook", mixinStandardHelpOptions = true)
-    @Override
-    public void addNote(
-            @Parameters(paramLabel = "<header>",
-                    description = "Header of the note") String header,
-            @Option(names = {"-b", "--body"},
-                    paramLabel = "<body>",
-                    description = "Main body of the notes",
-                    defaultValue = Option.NULL_VALUE) String body) {
-        Note tmpNote = new Note(header, body);
-        tempNotebook = pullData();
-        tempNotebook.put(tmpNote.date, tmpNote);
-        pushData(tempNotebook);
-    }
-
-    /**
-     * This method removes first occurrence of the specific note from the notebook by its header.
-     *
-     * @param header is the required header of the note
-     * @return removed note from the notebook
-     * @throws IllegalStateException if note with required header isn't in notebook
-     */
-    @Command(name = "rm", description = "Remove note by its header", mixinStandardHelpOptions = true)
-    @Override
-    public Note removeNote(
-            @Parameters(paramLabel = "<header>",
-                    description = "Header of the note") String header)
-            throws IllegalStateException {
-        tempNotebook = pullData();
-        if (!tempNotebook.isEmpty()) {
-            Note removedNote = searchNoteByHeader(header);
-            if (removedNote != null) {
-                tempNotebook.remove(removedNote.date);
-                pushData(tempNotebook);
-                System.out.println("Removed note:\n");
-                removedNote.showNote();
-                return removedNote;
-            } else throw new IllegalStateException("This note isn't contained" +
-                    "in the notebook");
-        } else {
-            System.out.println("Notebook is empty");
-            return null;
-        }
-    }
-
-    /**
-     * This method shows all notes in the notebook or shows all notes
-     * which headers are suiting for the passed keywords
-     *
-     * @param keywords is a specific collection of keywords
-     *                 for which the notebook will be displayed
-     * @throws IllegalStateException if required keywords set didn't match any notes
-     */
-    @Command(name = "show", description = "Show all notes in the notebook" +
-            " which is sorted by time of creation", mixinStandardHelpOptions = true)
-    @Override
-    public void showNotebook(
-            @Parameters(paramLabel = "keywords set", description = "Keywords that will be" +
-                    "contained in the result set")
-            Collection<String> keywords)
-            throws IllegalStateException {
-
-        tempNotebook = pullData();
-        if (tempNotebook.isEmpty()) {
-            System.out.println("The notebook is empty");
-            return;
-        }
-
-        if (keywords == null) {
-            for (var note : tempNotebook.values()) {
-                System.out.println("\n---------------------");
-                note.showNote();
-            }
-        } else {
-            Map<Date, Note> sortedNotebook = new TreeMap<>();
-            for (var keyword : keywords) {
-                for (var note : tempNotebook.values()) {
-                    if (note.getHeader().equals(keyword)) {
-                        sortedNotebook.put(note.date, note);
-                    }
-                }
-            }
-            if (!sortedNotebook.isEmpty()) {
-                for (var note : sortedNotebook.values()) {
-                    System.out.println("\n---------------------");
-                    note.showNote();
-                }
-            } else {
-                throw new IllegalStateException("None of the notes are matched keywords");
-            }
-        }
-    }
-
-    /**
-     * This method changing existing note in the notebook by its header.
-     * It can also change body of the note.
-     *
-     * @param oldHeader is the old header of the changing note,
-     *                  by which this note will be founded
-     * @param newHeader is the new header of the changing note
-     * @param body      is the optional body of the new note
-     * @throws IllegalStateException if note with required header isn't in notebook
-     */
-    @Command(name = "edit", description = "Edit of the current note", mixinStandardHelpOptions = true)
-    @Override
-    public void editNote(
-            @Parameters(paramLabel = "<oldHeader>",
-                    description = "Old header of the note") String oldHeader,
-            @Parameters(paramLabel = "<newHeader>",
-                    description = "New header of the note") String newHeader,
-            @Option(names = {"-b", "--body"},
-                    description = "Body of the note",
-                    defaultValue = Option.NULL_VALUE) String body)
-            throws IllegalStateException {
-
-        tempNotebook = pullData();
-        Note newNode = removeNote(oldHeader);
-
-        if (newNode == null) {
-            throw new IllegalStateException("This note isn't contained" +
-                    " in the notebook");
-        } else {
-            newNode.setHeader(newHeader);
-            if (body != null) newNode.setBody(body);
-            newNode.showNote();
-            tempNotebook.put(newNode.date, newNode);
-            pushData(tempNotebook);
-        }
-    }
-
-    private Note searchNoteByHeader(String header) {
+    protected Note searchNoteByHeader(String header) {
         for (var note : tempNotebook.values()) {
             if (note.getHeader().contains(header)) {
                 return note;
@@ -188,12 +45,12 @@ public class MyNotebook implements Notebook {
         return null;
     }
 
-    private TreeMap<Date, Note> pullData() {
+    protected TreeMap<Date, Note> pullData() {
         tempNotebook = serializer.getDataFromFile();
         return tempNotebook != null ? tempNotebook : new TreeMap<>();
     }
 
-    private void pushData(Map<Date, Note> notebook) {
+    protected void pushData(Map<Date, Note> notebook) {
         serializer.updateFile(notebook);
     }
 }

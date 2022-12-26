@@ -14,34 +14,52 @@ import java.util.TreeMap;
  * It updates and get data from the JSON file which is linked to it.
  */
 public class NotebookSerializer {
-    private String filePath;
+    private static final String notebookFile = "./notebook.txt";
+    private static File file;
     private final Type mapType = new TypeToken<TreeMap<Date, Note>>() {
     }.getType();
-    private final File file;
     private final Gson gson;
-
-    /**
-     * Overload of the default constructor of the class
-     * with the user's file path.
-     * @param filePath is the user's file path
-     */
-    public NotebookSerializer(String filePath) {
-        this();
-        this.filePath = filePath;
-    }
 
     /**
      * Default constructor of the class.
      * Creates or connects with notebook.json file.
      */
     public NotebookSerializer() {
-        filePath = "./notebook.json";
-        file = new File(filePath);
+        file = getPathToFile();
         gson = new GsonBuilder()
                 .enableComplexMapKeySerialization()
                 .setPrettyPrinting()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
+    }
+
+    /**
+     * This method gets path to the ".json" file from the file.
+     *
+     * @return new File with the taken path to the
+     * notebook ".json" file
+     */
+    private File getPathToFile() {
+        try (BufferedReader br = new BufferedReader(
+                new FileReader(notebookFile))) {
+            return new File(br.readLine());
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Setter of the new path to the output ".json" file.
+     *
+     * @param newFilePath is the required new path to the ".json" file
+     */
+    public void setNewPathToFile(String newFilePath) {
+        try (BufferedWriter br = new BufferedWriter(
+                new FileWriter(notebookFile))) {
+            br.write(newFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

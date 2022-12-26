@@ -163,8 +163,6 @@ public class Number implements Operator {
      * This function calculates hyperbolic sinus (function that helps
      * to calculate complex sinus of the number).
      *
-     * @param theta is the current angle between point on the complex striation
-     *              and the OX axis.
      * @return the hyperbolic sinus of the number
      */
     public double sinh(double theta) {
@@ -177,7 +175,7 @@ public class Number implements Operator {
     }
 
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
+    public Number calculate() {
         parseNumber(this.token);
         return this;
     }

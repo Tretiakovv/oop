@@ -10,7 +10,7 @@ import java.util.*;
  * parse complex expressions and real expressions.
  */
 public class Calculator {
-    private final Deque<Number> calculatorStack;
+    protected static Deque<Number> calculatorStack;
     private final OperatorFactory operatorFactory;
     private String[] subExprArray;
     private Integer curIndex;
@@ -20,7 +20,7 @@ public class Calculator {
      */
     public Calculator() {
         this.operatorFactory = new OperatorFactory();
-        this.calculatorStack = new ArrayDeque<>();
+        calculatorStack = new ArrayDeque<>();
         this.subExprArray = null;
         this.curIndex = 0;
     }
@@ -57,7 +57,7 @@ public class Calculator {
         while (curIndex > 0) {
             String current = peek();
             Operator currentOperator = operatorFactory.runOperator(current);
-            calculatorStack.addLast(currentOperator.calculate(calculatorStack));
+            calculatorStack.addLast(currentOperator.calculate());
             curIndex--;
         }
 

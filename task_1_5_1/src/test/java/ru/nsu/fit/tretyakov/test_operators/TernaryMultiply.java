@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov.test_operators;
 
 import java.util.Deque;
+import java.util.List;
 
 import ru.nsu.fit.tretyakov.operators.Number;
 import ru.nsu.fit.tretyakov.Operator;
@@ -25,9 +26,9 @@ public class TernaryMultiply implements Operator {
      * @return result of dividing three numbers.
      */
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
-        Number[] operands = getValuesFromStack(3, expressionStack);
-        return new Number(operands[0].real() * operands[1].real()
-                * operands[2].real(), 0);
+    public Number calculate() {
+        List<Number> complexOperands = getValuesFromStack(3);
+        return new Number(complexOperands.get(0).real() * complexOperands.get(1).real()
+                * complexOperands.get(2).real(), 0);
     }
 }

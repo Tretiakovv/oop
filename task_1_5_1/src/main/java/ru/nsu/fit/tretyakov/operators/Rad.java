@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov.operators;
 
 import java.util.Deque;
+import java.util.List;
 
 import ru.nsu.fit.tretyakov.Operator;
 
@@ -19,13 +20,11 @@ public class Rad implements Operator {
     /**
      * This function converts degree value of the angle to the radian value.
      *
-     * @param expressionStack is the stack of all operands in which
-     *                        this function will get an operand.
      * @return radian value of the angle.
      */
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
-        Number[] operands = getValuesFromStack(1, expressionStack);
-        return new Number(Math.toRadians(operands[0].real()), 0);
+    public Number calculate() {
+        List<Number> complexOperands = getValuesFromStack(1);
+        return new Number(Math.toRadians(complexOperands.get(0).real()), 0);
     }
 }

@@ -10,7 +10,6 @@ import ru.nsu.fit.tretyakov.MyNotebook;
 @CommandLine.Command(name = "file", description = "sets user's path to the file" +
         " where's notebook will be placed", mixinStandardHelpOptions = true)
 public class FilePath implements Runnable {
-
     /**
      * This field is the required path to the new file.
      */
@@ -25,6 +24,6 @@ public class FilePath implements Runnable {
      */
     @Override
     public void run() {
-        MyNotebook.serializer.setNewPathToFile(filePath);
+        MyNotebook.getSerializer().setNewPathToFile(filePath);
     }
 }

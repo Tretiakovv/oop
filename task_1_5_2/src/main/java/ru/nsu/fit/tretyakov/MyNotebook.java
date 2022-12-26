@@ -1,18 +1,20 @@
 package ru.nsu.fit.tretyakov;
 
+import com.sun.source.tree.Tree;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import ru.nsu.fit.tretyakov.subcommands.Add;
 import ru.nsu.fit.tretyakov.subcommands.Edit;
 import ru.nsu.fit.tretyakov.subcommands.Remove;
+import ru.nsu.fit.tretyakov.subcommands.Show;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
- * This class implements Notebook interface, which allows
- * user to add, edit, delete notes and show all notebook
- * by specific keywords
+ * This allows user to add, edit, delete notes
+ * and show all notebook by specific keywords
  */
 @Command(name = "notebook",
         mixinStandardHelpOptions = true,
@@ -23,9 +25,8 @@ public class MyNotebook {
     /**
      * Static serializer of the notebook.
      */
-    public static NotebookSerializer serializer;
-
-    protected TreeMap<Date, Note> tempNotebook;
+    private static NotebookSerializer serializer;
+    private TreeMap<Date, Note> tempNotebook;
 
     /**
      * Default constructor with the
@@ -36,7 +37,23 @@ public class MyNotebook {
         tempNotebook = pullData();
     }
 
-    protected Note searchNoteByHeader(String header) {
+    /**
+     * Getter of the notebook serializer.
+     *
+     * @return current notebook serializer
+     */
+    public static NotebookSerializer getSerializer() {
+        return serializer;
+    }
+
+    /**
+     * This method searches note by its header.
+     *
+     * @param header is the required header by
+     *               which note will be searched
+     * @return specific note with this header
+     */
+    public Note searchNoteByHeader(String header) {
         for (var note : tempNotebook.values()) {
             if (note.getHeader().contains(header)) {
                 return note;
@@ -45,12 +62,23 @@ public class MyNotebook {
         return null;
     }
 
-    protected TreeMap<Date, Note> pullData() {
+    /**
+     * This method pulls data from the file.
+     *
+     * @return taken notebook from the file
+     */
+    public TreeMap<Date, Note> pullData() {
         tempNotebook = serializer.getDataFromFile();
         return tempNotebook != null ? tempNotebook : new TreeMap<>();
     }
 
-    protected void pushData(Map<Date, Note> notebook) {
+    /**
+     * This method pushes data to the file.
+     *
+     * @param notebook is the current notebook which
+     *                 will be added to the file
+     */
+    public void pushData(Map<Date, Note> notebook) {
         serializer.updateFile(notebook);
     }
 }

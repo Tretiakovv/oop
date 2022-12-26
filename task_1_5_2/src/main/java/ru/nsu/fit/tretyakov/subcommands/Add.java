@@ -4,6 +4,9 @@ import picocli.CommandLine;
 import ru.nsu.fit.tretyakov.MyNotebook;
 import ru.nsu.fit.tretyakov.Note;
 
+import java.util.Date;
+import java.util.TreeMap;
+
 /**
  * This class adds a new note to the current notebook
  */
@@ -31,7 +34,7 @@ public class Add extends MyNotebook implements Runnable {
      */
     public void addNote() {
         Note tmpNote = new Note(header, body);
-        tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = pullData();
         tempNotebook.put(tmpNote.date, tmpNote);
         pushData(tempNotebook);
     }

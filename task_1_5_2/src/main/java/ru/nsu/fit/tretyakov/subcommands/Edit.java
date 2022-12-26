@@ -4,13 +4,15 @@ import picocli.CommandLine;
 import ru.nsu.fit.tretyakov.MyNotebook;
 import ru.nsu.fit.tretyakov.Note;
 
+import java.util.Date;
+import java.util.TreeMap;
+
 /**
  * This class edits current note in the notebook
  * by its header and optional body.
  */
 @CommandLine.Command(name = "edit", description = "Edit of the current note", mixinStandardHelpOptions = true)
-public class Edit extends MyNotebook implements Runnable{
-
+public class Edit extends MyNotebook implements Runnable {
     /**
      * This field is the old header of the changing note,
      * by which this note will be founded.
@@ -40,7 +42,8 @@ public class Edit extends MyNotebook implements Runnable{
      */
     public void editNote() throws IllegalStateException {
 
-        tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = pullData();
+
         Note newNode = new Remove(oldHeader).removeNote();
 
         if (newNode == null) {

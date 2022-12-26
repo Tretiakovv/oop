@@ -8,7 +8,7 @@ group 'ru.nsu.fit.tretyakov'
 version 'unspecified'
 
 application {
-    mainClass = "ru.nsu.fit.tretyakov.MyNotebook"
+    mainClass = "ru.nsu.fit.tretyakov.Main"
 }
 
 repositories {

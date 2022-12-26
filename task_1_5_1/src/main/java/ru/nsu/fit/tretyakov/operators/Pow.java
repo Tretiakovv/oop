@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov.operators;
 
 import java.util.Deque;
+import java.util.List;
 
 import ru.nsu.fit.tretyakov.Operator;
 
@@ -21,13 +22,11 @@ public class Pow implements Operator {
      * This function calculates the result of raising one number
      * to the power of another.
      *
-     * @param expressionStack is the stack of all operands in which
-     *                        this function will get an operand.
      * @return the result of raising one number to the power of another.
      */
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
-        Number[] operands = getValuesFromStack(2, expressionStack);
-        return new Number(Math.pow(operands[0].real(), operands[1].real()), 0);
+    public Number calculate() {
+        List<Number> complexOperands = getValuesFromStack(2);
+        return new Number(Math.pow(complexOperands.get(0).real(), complexOperands.get(1).real()), 0);
     }
 }

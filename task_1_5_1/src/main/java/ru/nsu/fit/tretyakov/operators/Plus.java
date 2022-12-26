@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov.operators;
 
 import java.util.Deque;
+import java.util.List;
 
 import ru.nsu.fit.tretyakov.Operator;
 
@@ -19,15 +20,13 @@ public class Plus implements Operator {
     /**
      * This function calculates result of adding one complex number to second.
      *
-     * @param expressionStack is the stack of all operands in which
-     *                        this function will get an operand.
      * @return result of adding one complex number to second.
      */
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
-        Number[] complexOperands = getValuesFromStack(2, expressionStack);
-        Number fst = complexOperands[0];
-        Number snd = complexOperands[1];
+    public Number calculate() {
+        List<Number> complexOperands = getValuesFromStack(2);
+        Number fst = complexOperands.get(0);
+        Number snd = complexOperands.get(1);
 
         return new Number(fst.real() + snd.real(), fst.imag() + snd.imag());
     }

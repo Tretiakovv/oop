@@ -16,7 +16,7 @@ public class CalculatorTest {
     @CsvSource(value = {
             "sin + - 1 2 1, 0",
             "+ 78 / - 30 * 0.5 + 28 8 6, 80",
-            "+ sqrt / pow log 2 10 4 2 sin pi/6, 0.5800013488785706",
+            "+ sqrt / pow log 2 4 2 sin pi/6, 0.8397315841830748",
             "sin pi/6, 0.49999999999999994",
             "sin rad 30, 0.49999999999999994"
     })

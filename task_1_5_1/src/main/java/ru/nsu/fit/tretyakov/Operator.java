@@ -2,7 +2,9 @@ package ru.nsu.fit.tretyakov;
 
 import ru.nsu.fit.tretyakov.operators.Number;
 
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * This interface contains only one method that allows Calculator
@@ -20,24 +22,21 @@ public interface Operator {
     /**
      * This function calculates value of the number.
      *
-     * @param expressionStack is the stack of all operands in which
-     *                        this function will get an operand.
      * @return transformed value of the number.
      */
-    Number calculate(Deque<Number> expressionStack);
+    Number calculate();
 
     /**
      * This method gets operands from the stack arity times.
      *
-     * @param arity           is the number of taken operands from the stack
-     * @param expressionStack is the calculator's expression stack
+     * @param arity is the number of taken operands from the stack
      * @return list of taken operands from the stack
      */
-    default Number[] getValuesFromStack(int arity, Deque<Number> expressionStack) {
-        Number[] operandsArray = new Number[arity];
+    default List<Number> getValuesFromStack(int arity) {
+        List<Number> operators = new ArrayList<>();
         for (int i = 0; i < arity; i++) {
-            operandsArray[i] = expressionStack.pollLast();
+            operators.add(Calculator.calculatorStack.pollLast());
         }
-        return operandsArray;
+        return operators;
     }
 }

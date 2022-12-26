@@ -1,6 +1,7 @@
 package ru.nsu.fit.tretyakov.operators;
 
 import java.util.Deque;
+import java.util.List;
 
 import ru.nsu.fit.tretyakov.Operator;
 
@@ -19,14 +20,12 @@ public class Cosine implements Operator {
     /**
      * This function calculates cosine of the complex number.
      *
-     * @param expressionStack is the stack of all operands in which
-     *                        this function will get an operand.
      * @return cosine of the complex number.
      */
     @Override
-    public Number calculate(Deque<Number> expressionStack) {
-        Number[] complexOperands = getValuesFromStack(2, expressionStack);
-        Number fst = complexOperands[0];
+    public Number calculate() {
+        List<Number> complexOperands = getValuesFromStack(2);
+        Number fst = complexOperands.get(0);
         return new Number(fst.sinh(fst.imag()) * Math.cos(fst.real()),
                 (-1) * fst.sinh(fst.imag()) * Math.sin(fst.real()));
     }

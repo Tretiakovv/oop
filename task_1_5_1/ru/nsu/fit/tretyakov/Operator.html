@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#calculate(java.util.Deque)" class="member-name-link">calculate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;&nbsp;expressionStack)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#calculate()" class="member-name-link">calculate</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">This function calculates value of the number.</div>
 </div>
@@ -103,9 +103,8 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Getter of the token of the specific operator.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getValuesFromStack(int,java.util.Deque)" class="member-name-link">getValuesFromStack</a><wbr>(int&nbsp;arity,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;&nbsp;expressionStack)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getValuesFromStack(int)" class="member-name-link">getValuesFromStack</a><wbr>(int&nbsp;arity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
 <div class="block">This method gets operands from the stack arity times.</div>
 </div>
@@ -135,29 +134,24 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="calculate(java.util.Deque)">
+<section class="detail" id="calculate()">
 <h3>calculate</h3>
-<div class="member-signature"><span class="return-type"><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a></span>&nbsp;<span class="element-name">calculate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;&nbsp;expressionStack)</span></div>
+<div class="member-signature"><span class="return-type"><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a></span>&nbsp;<span class="element-name">calculate</span>()</div>
 <div class="block">This function calculates value of the number.</div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>expressionStack</code> - is the stack of all operands in which
-                        this function will get an operand.</dd>
 <dt>Returns:</dt>
 <dd>transformed value of the number.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getValuesFromStack(int,java.util.Deque)">
+<section class="detail" id="getValuesFromStack(int)">
 <h3>getValuesFromStack</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>[]</span>&nbsp;<span class="element-name">getValuesFromStack</span><wbr><span class="parameters">(int&nbsp;arity,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;&nbsp;expressionStack)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="operators/Number.html" title="class in ru.nsu.fit.tretyakov.operators">Number</a>&gt;</span>&nbsp;<span class="element-name">getValuesFromStack</span><wbr><span class="parameters">(int&nbsp;arity)</span></div>
 <div class="block">This method gets operands from the stack arity times.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>arity</code> - is the number of taken operands from the stack</dd>
-<dd><code>expressionStack</code> - is the calculator's expression stack</dd>
 <dt>Returns:</dt>
 <dd>list of taken operands from the stack</dd>
 </dl>

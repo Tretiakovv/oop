@@ -4,6 +4,9 @@ import picocli.CommandLine;
 import ru.nsu.fit.tretyakov.MyNotebook;
 import ru.nsu.fit.tretyakov.Note;
 
+import java.util.Date;
+import java.util.TreeMap;
+
 /**
  * This class removes current note from the notebook by its header.
  */
@@ -18,6 +21,13 @@ public class Remove extends MyNotebook implements Runnable {
     private String header;
 
     /**
+     * Default constructor of the class.
+     */
+    public Remove() {
+
+    }
+
+    /**
      * Overload of the main constructor with
      * the string header parameter.
      *
@@ -29,12 +39,6 @@ public class Remove extends MyNotebook implements Runnable {
     }
 
     /**
-     * Default constructor of the class.
-     */
-    public Remove() {
-    }
-
-    /**
      * This method removes first occurrence of the specific note from the notebook by its header.
      *
      * @return removed note from the notebook
@@ -42,7 +46,9 @@ public class Remove extends MyNotebook implements Runnable {
      */
     public Note removeNote()
             throws IllegalStateException {
-        tempNotebook = pullData();
+
+        TreeMap<Date, Note> tempNotebook = pullData();
+
         if (!tempNotebook.isEmpty()) {
             Note removedNote = searchNoteByHeader(header);
             if (removedNote != null) {

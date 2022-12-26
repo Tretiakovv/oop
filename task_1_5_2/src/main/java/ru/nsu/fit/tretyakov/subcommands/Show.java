@@ -1,5 +1,6 @@
 package ru.nsu.fit.tretyakov.subcommands;
 
+import com.sun.source.tree.Tree;
 import picocli.CommandLine;
 import ru.nsu.fit.tretyakov.MyNotebook;
 import ru.nsu.fit.tretyakov.Note;
@@ -19,7 +20,6 @@ import java.util.stream.Collectors;
 @CommandLine.Command(name = "show", description = "Show all notes in the notebook" +
         " which is sorted by time of creation", mixinStandardHelpOptions = true)
 public class Show extends MyNotebook implements Runnable {
-
     /**
      * This field is the optional parameter of the
      * starting date of the notebook display.
@@ -54,7 +54,9 @@ public class Show extends MyNotebook implements Runnable {
      */
     public void showNotebook() throws IllegalStateException, ParseException {
 
-        tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = pullData();
+        ;
+
         if (tempNotebook.isEmpty()) {
             System.out.println("The notebook is empty");
             return;

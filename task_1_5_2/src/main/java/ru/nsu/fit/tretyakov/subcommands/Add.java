@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * This class adds a new note to the current notebook
  */
 @CommandLine.Command(name = "add", description = "Add a new note to the notebook", mixinStandardHelpOptions = true)
-public class Add extends MyNotebook implements Runnable {
+public class Add implements Runnable {
     /**
      * This field is the required header of the new note.
      */
@@ -28,15 +28,18 @@ public class Add extends MyNotebook implements Runnable {
             defaultValue = CommandLine.Option.NULL_VALUE)
     private String body;
 
+    @CommandLine.ParentCommand
+    private MyNotebook notebook;
+
     /**
      * This method adds specific note to the notebook
      * with passed header and body parameters.
      */
     public void addNote() {
         Note tmpNote = new Note(header, body);
-        TreeMap<Date, Note> tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = notebook.pullData();
         tempNotebook.put(tmpNote.date, tmpNote);
-        pushData(tempNotebook);
+        notebook.pushData(tempNotebook);
     }
 
     /**

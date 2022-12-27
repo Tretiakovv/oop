@@ -3,10 +3,7 @@ package ru.nsu.fit.tretyakov;
 import com.sun.source.tree.Tree;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
-import ru.nsu.fit.tretyakov.subcommands.Add;
-import ru.nsu.fit.tretyakov.subcommands.Edit;
-import ru.nsu.fit.tretyakov.subcommands.Remove;
-import ru.nsu.fit.tretyakov.subcommands.Show;
+import ru.nsu.fit.tretyakov.subcommands.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,6 +14,7 @@ import java.util.*;
  * and show all notebook by specific keywords
  */
 @Command(name = "notebook",
+        subcommands = {Add.class, Edit.class, Remove.class, Show.class, FilePath.class},
         mixinStandardHelpOptions = true,
         description = "Notebook can add new notes, edit old notes," +
                 " delete notes and show notes by it's headers keywords")

@@ -11,8 +11,10 @@ import java.util.TreeMap;
  * This class removes current note from the notebook by its header.
  */
 @CommandLine.Command(name = "rm", description = "Remove note by its header", mixinStandardHelpOptions = true)
-public class Remove extends MyNotebook implements Runnable {
+public class Remove implements Runnable {
 
+    @CommandLine.ParentCommand
+    private static MyNotebook notebook;
     /**
      * This field is the required header of the note.
      */
@@ -39,6 +41,18 @@ public class Remove extends MyNotebook implements Runnable {
     }
 
     /**
+     * Overload of the default constructor of the
+     * class with the current notebook state parameter.
+     *
+     * @param newNotebook is the current state of the notebook
+     * @return removed note from the notebook
+     */
+    public Note removeNote(MyNotebook newNotebook) {
+        notebook = newNotebook;
+        return removeNote();
+    }
+
+    /**
      * This method removes first occurrence of the specific note from the notebook by its header.
      *
      * @return removed note from the notebook
@@ -47,13 +61,13 @@ public class Remove extends MyNotebook implements Runnable {
     public Note removeNote()
             throws IllegalStateException {
 
-        TreeMap<Date, Note> tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = notebook.pullData();
 
         if (!tempNotebook.isEmpty()) {
-            Note removedNote = searchNoteByHeader(header);
+            Note removedNote = notebook.searchNoteByHeader(header);
             if (removedNote != null) {
                 tempNotebook.remove(removedNote.date);
-                pushData(tempNotebook);
+                notebook.pushData(tempNotebook);
                 System.out.println("Removed note:\n");
                 removedNote.showNote();
                 return removedNote;

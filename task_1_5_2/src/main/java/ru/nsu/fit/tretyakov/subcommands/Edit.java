@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * by its header and optional body.
  */
 @CommandLine.Command(name = "edit", description = "Edit of the current note", mixinStandardHelpOptions = true)
-public class Edit extends MyNotebook implements Runnable {
+public class Edit implements Runnable {
     /**
      * This field is the old header of the changing note,
      * by which this note will be founded.
@@ -34,6 +34,9 @@ public class Edit extends MyNotebook implements Runnable {
             defaultValue = CommandLine.Option.NULL_VALUE)
     private String body;
 
+    @CommandLine.ParentCommand
+    private static MyNotebook notebook;
+
     /**
      * This method changing existing note in the notebook by its header.
      * It can also change body of the note.
@@ -42,9 +45,9 @@ public class Edit extends MyNotebook implements Runnable {
      */
     public void editNote() throws IllegalStateException {
 
-        TreeMap<Date, Note> tempNotebook = pullData();
+        TreeMap<Date, Note> tempNotebook = notebook.pullData();
 
-        Note newNode = new Remove(oldHeader).removeNote();
+        Note newNode = new Remove(oldHeader).removeNote(notebook);
 
         if (newNode == null) {
             throw new IllegalStateException("This note isn't contained" +
@@ -54,7 +57,7 @@ public class Edit extends MyNotebook implements Runnable {
             if (body != null) newNode.setBody(body);
             newNode.showNote();
             tempNotebook.put(newNode.date, newNode);
-            pushData(tempNotebook);
+            notebook.pushData(tempNotebook);
         }
     }
 

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 @CommandLine.Command(name = "show", description = "Show all notes in the notebook" +
         " which is sorted by time of creation", mixinStandardHelpOptions = true)
-public class Show extends MyNotebook implements Runnable {
+public class Show implements Runnable {
     /**
      * This field is the optional parameter of the
      * starting date of the notebook display.
@@ -45,6 +45,9 @@ public class Show extends MyNotebook implements Runnable {
             "contained in the result set")
     private Collection<String> keywords;
 
+    @CommandLine.ParentCommand
+    private MyNotebook notebook;
+
     /**
      * This method shows notebook by its keywords, starting date or ending date.
      *
@@ -54,8 +57,7 @@ public class Show extends MyNotebook implements Runnable {
      */
     public void showNotebook() throws IllegalStateException, ParseException {
 
-        TreeMap<Date, Note> tempNotebook = pullData();
-        ;
+        TreeMap<Date, Note> tempNotebook = notebook.pullData();
 
         if (tempNotebook.isEmpty()) {
             System.out.println("The notebook is empty");

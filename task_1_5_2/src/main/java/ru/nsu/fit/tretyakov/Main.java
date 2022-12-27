@@ -11,12 +11,7 @@ public class Main {
      * @throws IllegalStateException if any of the commands throws IllegalStateException
      */
     public static void main(String[] args) throws IllegalStateException {
-        final CommandLine cmd = new CommandLine(new MyNotebook())
-                .addSubcommand("add", new Add())
-                .addSubcommand("rm",new Remove())
-                .addSubcommand("edit", new Edit())
-                .addSubcommand("show", new Show())
-                .addSubcommand("file", new FilePath());
+        final CommandLine cmd = new CommandLine(new MyNotebook());
         cmd.execute(args);
     }
 }

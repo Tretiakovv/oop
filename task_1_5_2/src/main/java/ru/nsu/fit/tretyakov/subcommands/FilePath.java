@@ -13,7 +13,7 @@ public class FilePath implements Runnable {
     /**
      * This field is the required path to the new file.
      */
-    @CommandLine.Parameters(paramLabel = "<path>",
+    @CommandLine.Option(names = {"-f", "--file"},
             description = "Path to the user's file",
             defaultValue = CommandLine.Option.NULL_VALUE)
     private static String filePath;
